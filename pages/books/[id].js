@@ -13,7 +13,8 @@ export default function BookDetail() {
         if (id) {
             const fetchBook = async () => {
                 try {
-                    const response = await axios.get(`https://freetestapi.com/api/v1/books/${id}`);
+                    // const response = await axios.get(`https://freetestapi.com/api/v1/books/${id}`);
+                    const response = await axios.get(`/api/books/${id}`);
                     setBook(response.data);
                 } catch (error) {
                     console.error('Error fetching book details:', error);

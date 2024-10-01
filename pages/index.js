@@ -10,7 +10,8 @@ export default function Home() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const response = await axios.get('https://freetestapi.com/api/v1/books');
+                // const response = await axios.get('https://freetestapi.com/api/v1/books');
+                const response = await axios.get('http:/api/books');
                 setBooks(response.data);
             } catch (error) {
                 console.error('Error fetching books:', error);
