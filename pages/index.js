@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Typography, Container, Grid, Card, CardContent, CardMedia, Button } from '@mui/material';
 import axios from 'axios';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
     const [books, setBooks] = useState([]);
