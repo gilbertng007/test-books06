@@ -66,7 +66,7 @@ export default function Cart() {
                         總計：${total.toFixed(2)}
                     </Typography>
                     <div className="flex justify-end">
-                        <Link href="/checkout" passHref>
+                        <Link href="/checkout" passHref legacyBehavior>
                             <Button variant="contained" color="primary">
                                 結帳
                             </Button>

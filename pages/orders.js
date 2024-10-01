@@ -42,7 +42,7 @@ export default function Orders() {
                                 <TableCell>${order.total.toFixed(2)}</TableCell>
                                 <TableCell>{order.status}</TableCell>
                                 <TableCell>
-                                    <Link href={`/orders/${order.id}`} passHref>
+                                    <Link href={`/orders/${order.id}`} passHref legacyBehavior>
                                         <Button variant="outlined" size="small">
                                             查看詳情
                                         </Button>

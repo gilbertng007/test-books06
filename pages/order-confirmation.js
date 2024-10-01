@@ -13,7 +13,7 @@ export default function OrderConfirmation() {
             <Typography variant="body1" paragraph>
                 訂單編號：#12345
             </Typography>
-            <Link href="/orders" passHref>
+            <Link href="/orders" passHref legacyBehavior>
                 <Button variant="contained" color="primary">
                     查看訂單
                 </Button>

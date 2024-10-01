@@ -12,8 +12,8 @@ export default function Navbar() {
         <AppBar position="static">
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    <Link href="/">
-                        <a className="text-white no-underline">網上書店</a>
+                    <Link href="/" className="text-white no-underline">
+                        網上書店
                     </Link>
                 </Typography>
                 <Button color="inherit" onClick={() => router.push('/orders')}>

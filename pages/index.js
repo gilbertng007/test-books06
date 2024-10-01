@@ -46,7 +46,7 @@ export default function Home() {
                                 </Typography>
                             </CardContent>
                             <div className="p-4">
-                                <Link href={`/books/${book.id}`} passHref>
+                                <Link href={`/books/${book.id}`} passHref legacyBehavior>
                                     <Button variant="contained" color="primary" fullWidth>
                                         查看詳情
                                     </Button>
