@@ -10,7 +10,7 @@
             "Classic"
         ],
         "description": "A classic novel depicting racial injustice in the American South.",
-        "cover_image": "http://localhost:3000/jp-01.jpg"
+        "cover_image": "/jp-01.jpg"
     },
     {
         "id": 2,
@@ -110,7 +110,7 @@
             "Magical Realism",
             "Literary Fiction"
         ],
-        "description": "A multi-generational saga of the Buend¨ªa family in the fictional town of Macondo.",
+        "description": "A multi-generational saga of the Buendï¿½ï¿½a family in the fictional town of Macondo.",
         "cover_image": "https://fakeimg.pl/667x1000/cc6600"
     },
     {
