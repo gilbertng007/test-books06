@@ -25,7 +25,22 @@ export default function BookDetail() {
     }, [id]);
 
     const addToCart = () => {
+
         // 這裡將實現添加到購物車的邏輯
+        const addToCartLogic = async () => {
+            try {
+                // 這裡應該是從 API 獲取購物車數據的邏輯
+                const response = await axios.post('/api/cart', {
+                    bookId: id,
+                    quantity: quantity,
+                });
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error adding to cart:', error);
+            }
+        };
+        addToCartLogic();
+
         console.log(`Added ${quantity} of book ${id} to cart`);
     };
 
