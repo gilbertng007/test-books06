@@ -13,7 +13,7 @@ export default function Navbar() {
             <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     <Link href="/" className="text-white no-underline">
-                        網上書店
+                        當當網上書店首頁
                     </Link>
                 </Typography>
                 <Button color="inherit" onClick={() => router.push('/orders')}>
