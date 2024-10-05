@@ -6,18 +6,20 @@
     "price": 159,
     "publication_year": 1960,
     "genre": ["古典文學", "Classic"],
-    "description": "《紅樓夢》是一部描寫賈、史、王、薛四大家族榮枯興衰的長篇小說，以寶黛愛情悲劇為主線，展現了封建社會的種種弊端。Dream of the Red Chamber is a novel depicting the rise and fall of the four great families of Jia, Shi, Wang, and Xue. Centered around the tragic love story of Baoyu and Daiyu, it exposes various drawbacks of feudal society.",
-    "cover_image": "/hl-03.png"
+    "description": "又稱《石頭記》，作者是曹雪芹。這部小說以賈寶玉、林黛玉、薛寶釵三人的愛情婚姻為主線，描繪了賈、王、史、薛四大家族的興衰，反映了封建社會的各種矛盾和腐朽。這部小說以寶黛愛情悲劇為主線，展現了封建社會的種種弊端。\n該書通過豐富的人物形象和複雜的人際關係，展現了當時社會的風貌和人性的多面性。書中不僅有對貴族生活的細膩描繪，還有對封建社會種種弊端的深刻批評。《紅樓夢》以其獨特的藝術魅力和深邃的思想內容，成為中國乃至世界文學寶庫中的瑰寶。 Dream of the Red Chamber is a novel depicting the rise and fall of the four great families of Jia, Shi, Wang, and Xue. Centered around the tragic love story of Baoyu and Daiyu, it exposes various drawbacks of feudal society.",
+    "cover_image": "/hl-03.png",
+    "cover_video": "/hl-01.mp4"
   },
   {
     "id": 2,
     "title": "中國古典四大名著 Four Great Classical Chinese Novels",
-    "author": "",
+    "author": "曹雪芹, 吳承恩, 羅貫中, 施耐庵",
     "price": 254,
     "publication_year": 1949,
     "genre": ["古典文學", "Classic"],
-    "description": "A dystopian novel portraying a totalitarian society.",
-    "cover_image": "http://localhost:3000/sd-01.png"
+    "description": "1.《紅樓夢》：又稱《石頭記》，作者是曹雪芹。這部小說以賈寶玉、林黛玉、薛寶釵三人的愛情婚姻為主線，描繪了賈、王、史、薛四大家族的興衰，反映了封建社會的各種矛盾和腐朽。\n 2. 《西遊記》：作者是吳承恩。小說以唐僧師徒四人西天取經的故事為線索，透過孫悟空、豬八戒、沙僧保護唐僧西行取經，途中歷經九九八十一難的故事，展現了豐富的想像力和深刻的寓意。\n 3.《三國演義》：作者是羅貫中。這部小說以東漢末年到西晉初年之間的歷史為背景，透過曹操、劉備、孫權三個政治、軍事集團之間的矛盾和鬥爭，展現了那個時代的歷史風雲和英雄人物。\n 4.《水滸傳》：作者是施耐庵。小說以宋江領導的樑山泊好漢起義為主線，描寫了108位好漢被逼上樑山，反抗貪腐官府的故事，反映了封建社會底層人民的反抗精神。",
+    "cover_image": "http://localhost:3000/sd-01.png",
+    "cover_video": "http://localhost:3000/sd-01.mp4"
   },
   {
     "id": 3,

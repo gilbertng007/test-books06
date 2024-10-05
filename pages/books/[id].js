@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Container, Grid, Button, TextField } from '@mui/material';
 import axios from 'axios';
+import styles from '../Book.module.css';
 
 export default function BookDetail() {
     const router = useRouter();
     const { id } = router.query;
     const [book, setBook] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [videoUrl, setVideoUrl] = useState(null); // new state variable to store video URL
 
     useEffect(() => {
         if (id) {
@@ -16,6 +18,7 @@ export default function BookDetail() {
                     // const response = await axios.get(`https://freetestapi.com/api/v1/books/${id}`);
                     const response = await axios.get(`/api/books/${id}`);
                     setBook(response.data);
+                    setVideoUrl(response.data.cover_video); // set video URL from API response
                 } catch (error) {
                     console.error('Error fetching book details:', error);
                 }
@@ -51,6 +54,25 @@ export default function BookDetail() {
             <Grid container spacing={4}>
                 <Grid item xs={12} md={6}>
                     <img src={book.cover_image} alt={book.title} className="w-full rounded-lg shadow-lg" />
+
+                    {/* {videoUrl && ( */}
+                    {/* <video
+                        src={book.cover_video} alt={book.title}
+                        controls
+                        className="w-full rounded-lg shadow-lg mt-4"
+                    /> */}
+                    <video
+                        className={styles.video}
+                        width="640"
+                        height="480"
+                        controls
+                    >
+                        <source src={book.cover_video} alt={book.title} type="video/mp4" />
+                        您的瀏覽器不支援視頻標籤。
+                    </video>
+
+                    {/* )} */}
+
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Typography variant="h4" component="h1" gutterBottom>
