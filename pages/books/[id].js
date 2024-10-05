@@ -55,12 +55,7 @@ export default function BookDetail() {
                 <Grid item xs={12} md={6}>
                     <img src={book.cover_image} alt={book.title} className="w-full rounded-lg shadow-lg" />
 
-                    {/* {videoUrl && ( */}
-                    {/* <video
-                        src={book.cover_video} alt={book.title}
-                        controls
-                        className="w-full rounded-lg shadow-lg mt-4"
-                    /> */}
+                    {/* 
                     <video
                         className={styles.video}
                         width="640"
@@ -69,9 +64,15 @@ export default function BookDetail() {
                     >
                         <source src={book.cover_video} alt={book.title} type="video/mp4" />
                         您的瀏覽器不支援視頻標籤。
-                    </video>
+                    </video> */}
 
-                    {/* )} */}
+                    {videoUrl && (
+                        <video
+                            src={book.cover_video} alt={book.title}
+                            controls
+                            className="w-full rounded-lg shadow-lg mt-4"
+                        />
+                    )}
 
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -104,3 +105,6 @@ export default function BookDetail() {
         </Container>
     );
 }
+
+
+
