@@ -3,6 +3,8 @@ import { Typography, Container, Grid, Card, CardContent, CardMedia, Button } fro
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import BookFilter from '../components/BookFilter';
+
 
 export default function Home() {
     const [books, setBooks] = useState([]);
@@ -22,6 +24,7 @@ export default function Home() {
 
     return (
         <Container maxWidth="lg" className="my-8">
+            <BookFilter />
             <Typography variant="h2" component="h1" gutterBottom className="text-center mb-8">
                 歡迎來到我們的網上書店
             </Typography>
