@@ -1,108 +1,132 @@
 
-import { AppBar, Toolbar, Typography, Button, IconButton, Badge, TextField } from '@mui/material';
+
+import React, { useState, useEffect } from 'react';
+import { AppBar, Toolbar, Typography, Button, IconButton, Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import BookIcon from '@mui/icons-material/Book'; // Import the BookIcon
-import Confetti from 'react-confetti'; // Import the Confetti library
-import { useState, useEffect } from 'react';
-import { Howl, Howler } from 'howler';
+import BookIcon from '@mui/icons-material/Book';
+import Confetti from 'react-confetti';
+import { Howl } from 'howler';
+import { motion } from 'framer-motion';
+
+const Banana = () => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [direction, setDirection] = useState(1); // 1 for right, -1 for left
+
+  useEffect(() => {
+    const moveInterval = setInterval(() => {
+      setPosition(prev => {
+        let newX = prev.x + (direction * 5);
+        if (newX > window.innerWidth - 100) {
+          setDirection(-1);
+          newX = window.innerWidth - 100;
+        } else if (newX < 0) {
+          setDirection(1);
+          newX = 0;
+        }
+        return { x: newX, y: prev.y };
+      });
+    }, 50);
+
+    return () => clearInterval(moveInterval);
+  }, [direction]);
+
+  return (
+    <motion.div
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        left: position.x,
+        zIndex: 1000,
+      }}
+      animate={{
+        y: [0, -10, 0],
+      }}
+      transition={{
+        y: {
+          duration: 0.5,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        },
+      }}
+    >
+      <motion.img
+        src="/banana-character.png"
+        alt="Walking Banana"
+        style={{ width: '100px', height: 'auto' }}
+        animate={{ scaleX: direction }}
+      />
+    </motion.div>
+  );
+};
 
 export default function Navbar() {
   const router = useRouter();
   const cartItemsCount = 0;
-  const [playMusic, setPlayMusic] = useState(false); // Define playMusic state variable here
+  const [playMusic, setPlayMusic] = useState(false);
 
   const handleLinkClick = () => {
-    setPlayMusic(true); // Trigger music playback on link click
-    // You can also add other effects here, like animating the link or icon
+    setPlayMusic(true);
   };
 
   useEffect(() => {
     if (playMusic) {
       const sound = new Howl({
-        src: ['http://localhost:3000/bejin.mp3'], // replace with your own audio file
+        src: ['/bejin.mp3'],
         autoplay: true,
         loop: true,
       });
       sound.play();
-      // Stop music after 5 seconds
       setTimeout(() => {
         sound.stop();
         setPlayMusic(false);
       }, 245000);
     }
-  }, [playMusic]); // Now playMusic is defined in this scope
+  }, [playMusic]);
 
   return (
-    <div>
-      <AppBar position="static" sx={{ backgroundColor: '#2196f3', color: '#fff' }}>
-        <Toolbar sx={{ padding: '0 20px' }}>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#fff' }}>
-            <Link href="/" className="text-white no-underline" onClick={handleLinkClick}>
-              <BookIcon sx={{ fontSize: 56, color: 'yellowgreen', marginRight: 1 }} />
-              當當書店首頁
+    <div className="relative">
+      <AppBar position="static" className="bg-blue-600">
+        <Toolbar className="justify-between px-4">
+          <Typography variant="h6" component="div" className="flex items-center">
+            <Link href="/" className="text-white no-underline flex items-center" onClick={handleLinkClick}>
+              <BookIcon className="text-5xl text-yellow-300 mr-2" />
+              <span className="text-2xl font-bold">當當書店首頁</span>
             </Link>
           </Typography>
-          <Button
-            color="inherit"
-            onClick={() => router.push('/orders')}
-            sx={{
-              backgroundColor: '#1976d2',
-              '&:hover': {
-                backgroundColor: '#1565c0',
-              },
-              marginRight: 2,
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            我的訂單
-          </Button>
-          <IconButton
-            color="inherit"
-            onClick={() => router.push('/cart')}
-            sx={{
-              backgroundColor: '#1976d2',
-              '&:hover': {
-                backgroundColor: '#1565c0',
-              },
-              marginRight: 2,
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            <Badge badgeContent={cartItemsCount} color="error">
-              <ShoppingCartIcon />
-            </Badge>
-          </IconButton>
-
-          <Button
-            color="inherit"
-            onClick={() => router.push('/login')}
-            sx={{
-              backgroundColor: '#1976d2',
-              '&:hover': {
-                backgroundColor: '#1565c0',
-              },
-              marginLeft: 2,
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            登錄
-          </Button>
-          <Button
-            color="inherit"
-            onClick={() => router.push('/register')}
-            sx={{
-              backgroundColor: '#1976d2',
-              '&:hover': {
-                backgroundColor: '#1565c0',
-              },
-              marginLeft: 2,
-              boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-            }}
-          >
-            註冊
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Button
+              color="inherit"
+              onClick={() => router.push('/orders')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              我的訂單
+            </Button>
+            <IconButton
+              color="inherit"
+              onClick={() => router.push('/cart')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              <Badge badgeContent={cartItemsCount} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/login')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              登錄
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/register')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              註冊
+            </Button>
+          </div>
         </Toolbar>
       </AppBar>
       {playMusic && (
@@ -113,6 +137,7 @@ export default function Navbar() {
           style={{ width: '100%', height: '100vh' }}
         />
       )}
+      <Banana />
     </div>
   );
 }
