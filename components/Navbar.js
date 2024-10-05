@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Button, IconButton, Badge, TextField } fro
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import BookIcon from '@mui/icons-material/Book'; // Import the BookIcon
 
 export default function Navbar() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export default function Navbar() {
       <Toolbar sx={{ padding: '0 20px' }}>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: '#fff' }}>
           <Link href="/" className="text-white no-underline">
+            <BookIcon sx={{ fontSize: 56, color: 'yellowgreen', marginRight: 1 }} />
             當當網上書店首頁
           </Link>
         </Typography>
