@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "《紅樓夢》Dream of the Red Chamber",
-    "author": "曹雪芹",
+    "author": "曹雪芹 Cao Xueqin",
     "price": 159,
     "publication_year": 1960,
     "genre": ["古典文學", "Classic"],
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "title": "中國古典四大名著 Four Great Classical Chinese Novels",
-    "author": "曹雪芹, 吳承恩, 羅貫中, 施耐庵",
+    "author": "曹雪芹, 吳承恩, 羅貫中, 施耐庵  Cao Xueqin, Wu Chengen, Luo Pingzhong, Shi Nianbing",
     "price": 254,
     "publication_year": 1949,
     "genre": ["古典文學", "Classic"],
@@ -68,7 +68,7 @@
   {
     "id": 7,
     "title": "《毛澤東選集》第二版 The second edition of Selected Works of Mao Zedong collects",
-    "author": "毛澤東",
+    "author": "毛澤東  Mao Zedong",
     "price": 148,
     "publication_year": 1991,
     "genre": ["歷史人物", "Coming-of-age"],
