@@ -56,13 +56,14 @@
   },
   {
     "id": 6,
-    "title": "The Lord of the Rings",
-    "author": "J.R.R. Tolkien",
-    "price": 89,
-    "publication_year": 1954,
-    "genre": ["Fantasy", "Adventure"],
-    "description": "An epic fantasy saga about the quest to destroy the One Ring.",
-    "cover_image": "http://localhost:3000/sf-01.jpg"
+    "title": "《資本論》 Capital: A Critique of Political Economy",
+    "author": "馬克思  Karl Marx",
+    "price": 389,
+    "publication_year": 1867,
+    "genre": ["社會", "政治經濟", "Political Economy"],
+    "description": "《資本論》是馬克思的經典之作，這部作品被認為是政治經濟學的巔峰，深刻揭示了資本主義經濟的運作機制和內在矛盾。全書共分三卷，第一卷探討了資本的生產過程，第二卷研究了資本的流通過程，第三卷則是對資本主義生產總過程的分析。馬克思在這部著作中運用了辯證唯物主義和歷史唯物主義的方法論，闡述了資本主義經濟的發展規律，以及資本主義必然被社會主義所取代的歷史趨勢。《資本論》不僅是理論的研究，它還包含了對政治、法律、歷史、教育、道德、宗教等多個領域的深刻見解，是馬克思主義理論的寶庫。 Capital: A Critique of Political Economy is Karl Marx's seminal work, considered the pinnacle of political economy. It profoundly reveals the mechanisms and internal contradictions of the capitalist economy. The work is divided into three volumes, with the first volume exploring the production process of capital, the second volume examining the circulation process of capital, and the third volume analyzing the total process of capitalist production. Marx employs dialectical materialism and historical materialism in this work to elucidate the laws of development of the capitalist economy and the historical trend that capitalism will inevitably be replaced by socialism. Capital is not only a theoretical study; it also contains profound insights into various fields such as politics, law, history, education, morality, and religion, making it a treasure trove of Marxist theory.",
+    "cover_image": "http://localhost:3000/zp-01.jpg",
+    "cover_video": "http://localhost:3000/zp-01.mp4"
   },
   {
     "id": 7,
