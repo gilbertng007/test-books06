@@ -23,13 +23,14 @@
   },
   {
     "id": 3,
-    "title": "Pride and Prejudice",
-    "author": "Jane Austen",
-    "price": 339,
-    "publication_year": 1813,
-    "genre": ["Classic", "Romance"],
-    "description": "A classic novel exploring themes of love, marriage, and social norms.",
-    "cover_image": "http://localhost:3000/sy-01.jpg"
+    "title": "《人間值得》 Human Life is Worth It",
+    "author": "茗溪 Ming Xi",
+    "price": 139,
+    "publication_year": 2021,
+    "genre": ["人文"],
+    "description": "茗溪的《人間值得》是一本探討生活真諦的書，它以溫柔的筆觸，引領讀者進入一個充滿智慧與感悟的世界。作者結合自己的經歷，從自我認知、夢想追求、愛情體驗、幸福感悟和苦難應對等方面，為我們揭示了人生的意義。書中的文字如同潺潺流水，溫柔地洗滌我們的心靈，讓我們在認識到生活的真相後，依然保持對生活的熱愛和期待。 Human Life is Worth It is a work by Ming Xi, delving into the profound questions of life from aspects such as self, dreams, love, happiness, and suffering. The book guides readers through the muddy times of life, encouraging them to maintain the courage to love life even after recognizing the truth of life. With its gentle narrative, the book washes our souls like a murmuring stream, allowing us to keep loving and looking forward to life after understanding its reality。",
+    "cover_image": "http://localhost:3000/r-01.png",
+    "cover_video": "http://localhost:3000/r-01.mp4"
   },
   {
     "id": 4,
