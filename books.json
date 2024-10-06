@@ -63,12 +63,14 @@
   },
   {
     "id": 7,
-    "title": "The Catcher in the Rye",
-    "author": "J.D. Salinger",
-    "publication_year": 1951,
-    "genre": ["Fiction", "Coming-of-age"],
-    "description": "A classic coming-of-age novel following Holden Caulfield's journey.",
-    "cover_image": "https://fakeimg.pl/667x1000/cc6600"
+    "title": "《毛澤東選集》第二版 The second edition of Selected Works of Mao Zedong collects",
+    "author": "毛澤東",
+    "price": 148,
+    "publication_year": 1991,
+    "genre": ["歷史人物", "Coming-of-age"],
+    "description": "《毛澤東選集》第二版收錄了毛澤東在不同歷史時期的代表性著作，包括報告、演講、指示、信函等。這些文章涵蓋了中國共產黨領導的新民主主義革命時期的主要思想，反映了毛澤東對中國革命道路的選擇及其實踐。The second edition of Selected Works of Mao Zedong collects Mao Zedong's representative works in different historical periods, including reports, speeches, instructions, letters, etc. These articles cover the main ideas of the new democratic revolutionary period led by the Communist Party of China and reflect Mao Zedong’s choice of China’s revolutionary path and its practice.",
+    "cover_image": "http://localhost:3000/m-01.png",
+    "cover_video": "http://localhost:3000/m-01.mp4"
   },
   {
     "id": 8,
