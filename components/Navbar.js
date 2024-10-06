@@ -1,8 +1,7 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { AppBar, Toolbar, Typography, Button, IconButton, Badge } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import BookIcon from '@mui/icons-material/Book';
@@ -90,12 +89,6 @@ export default function Navbar() {
       <AppBar position="static" className="bg-blue-600">
         <Toolbar className="justify-between px-4">
           <Typography variant="h6" component="div" className="flex items-center">
-
-            {/* <Link href="/" className="text-white no-underline flex items-center" onClick={handleLinkClick}>
-              <BookIcon className="text-5xl text-yellow-300 mr-2" />
-              <span className="text-2xl font-bold">當當書店首頁 - 彩蛋歌曲</span>
-            </Link> */}
-
             <Link
               href="/"
               className="text-white no-underline flex items-center hover:bg-gradient-to-r hover:bg-red-500 hover:text-white hover:rounded hover:px-4 hover:py-2"
@@ -104,9 +97,8 @@ export default function Navbar() {
               <BookIcon className="text-5xl text-yellow-300 mr-2" />
               <span className="text-2xl font-bold">當當書店首頁 - 彩蛋歌曲</span>
             </Link>
-
           </Typography>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 ml-auto">
             <Button
               color="inherit"
               onClick={() => router.push('/orders')}
@@ -137,6 +129,14 @@ export default function Navbar() {
             >
               註冊
             </Button>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/game')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+              startIcon={<SportsEsportsIcon />}
+            >
+              遊戲
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
@@ -152,6 +152,7 @@ export default function Navbar() {
     </div>
   );
 }
+
 
 
 
