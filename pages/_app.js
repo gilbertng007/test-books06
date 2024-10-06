@@ -11,18 +11,20 @@ const theme = createTheme({
 });
 
 function MyApp({ Component, pageProps, router }) {
+    const isGamePage = router.pathname === '/game';
+
     return (
         <AppWrapper>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <div className="flex flex-col min-h-screen">
-                    <Navbar />
+                    {!isGamePage && <Navbar />}
                     <AnimatePresence mode="wait" initial={false}>
                         <main className="flex-grow" key={router.pathname}>
                             <Component {...pageProps} />
                         </main>
                     </AnimatePresence>
-                    <Footer />
+                    {!isGamePage && <Footer />}
                 </div>
             </ThemeProvider>
         </AppWrapper>
