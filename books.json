@@ -34,13 +34,14 @@
   },
   {
     "id": 4,
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
+    "title": "《從一到無窮大》 From One to Infinity",
+    "author": "喬治·伽莫夫  George Gamow",
     "price": 199,
-    "publication_year": 1925,
-    "genre": ["Fiction", "Classic"],
-    "description": "A tale of the American Dream, wealth, and love during the Roaring Twenties.",
-    "cover_image": "http://localhost:3000/hl-01.jpg"
+    "publication_year": 2015,
+    "genre": ["科普", "Science", "教科書"],
+    "description": "本書以生動有趣的語言，深入淺出地介紹了數學、物理學、生物學及天文學的基本概念與前沿知識。從基礎的數學概念如大數與無窮大，到相對論、量子力學等深奧理論，再到生物遺傳、宇宙結構等宏大議題，通過一個個故事串聯，將複雜的科學概念變得易於理解，讓我們在享受閱讀樂趣的同時，拓寬科學視野，領略自然科學的魅力。無論是對科學感興趣的初學者還是有一定科學基礎的讀者，都能從中受益匪淺 。 The book introduces the basic concepts and cutting-edge knowledge of mathematics, physics, biology, and astronomy in a lively and interesting language. From basic mathematical concepts such as large numbers and infinity, to profound theories like relativity and quantum mechanics, and then to grand topics like biological genetics and the structure of the universe, it connects complex scientific concepts through stories, making them easy to understand. It allows us to enjoy the pleasure of reading while broadening our scientific horizons and appreciating the charm of natural science. Both beginners interested in science and readers with a certain scientific foundation can benefit greatly from it.",
+    "cover_image": "http://localhost:3000/science-01.jpg",
+    "cover_video": "http://localhost:3000/science-01.mp4"
   },
   {
     "id": 5,
