@@ -29,14 +29,14 @@ export default function About() {
           您的瀏覽器不支援視頻標籤。
         </video> */}
         <video
-        className={styles.video}
-        width="640"
-        height="480"
-        controls
-      >
-        <source src="/video-01.mp4" type="video/mp4" />
-        您的瀏覽器不支援視頻標籤。
-      </video>
+          className={styles.video}
+          width="640"
+          height="480"
+          controls
+        >
+          <source src="/video-01.mp4" type="video/mp4" />
+          您的瀏覽器不支援視頻標籤。
+        </video>
       </div>
     </div>
   );

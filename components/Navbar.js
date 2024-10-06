@@ -90,10 +90,21 @@ export default function Navbar() {
       <AppBar position="static" className="bg-blue-600">
         <Toolbar className="justify-between px-4">
           <Typography variant="h6" component="div" className="flex items-center">
-            <Link href="/" className="text-white no-underline flex items-center" onClick={handleLinkClick}>
+
+            {/* <Link href="/" className="text-white no-underline flex items-center" onClick={handleLinkClick}>
               <BookIcon className="text-5xl text-yellow-300 mr-2" />
-              <span className="text-2xl font-bold">當當書店首頁</span>
+              <span className="text-2xl font-bold">當當書店首頁 - 彩蛋歌曲</span>
+            </Link> */}
+
+            <Link
+              href="/"
+              className="text-white no-underline flex items-center hover:bg-gradient-to-r hover:bg-red-500 hover:text-white hover:rounded hover:px-4 hover:py-2"
+              onClick={handleLinkClick}
+            >
+              <BookIcon className="text-5xl text-yellow-300 mr-2" />
+              <span className="text-2xl font-bold">當當書店首頁 - 彩蛋歌曲</span>
             </Link>
+
           </Typography>
           <div className="flex items-center space-x-2">
             <Button
@@ -141,3 +152,6 @@ export default function Navbar() {
     </div>
   );
 }
+
+
+
