@@ -45,13 +45,14 @@
   },
   {
     "id": 5,
-    "title": "Moby-Dick",
-    "author": "Herman Melville",
+    "title": "《資治通鑑》 Zizhi Tongjian",
+    "author": "司馬光 Sima Guan",
     "price": 459,
-    "publication_year": 1851,
-    "genre": ["Fiction", "Adventure"],
-    "description": "The epic tale of Captain Ahab's obsession with the white whale.",
-    "cover_image": "http://localhost:3000/sg-01.jpeg"
+    "publication_year": 1086,
+    "genre": ["歷史", "History"],
+    "description": "《資治通鑑》是由北宋著名史學家司馬光（1019-1086）主編的一部編年體史書，全書共有294卷，約三百萬字。該書內容涵蓋了從周威烈王二十三年（公元前403年）開始，直到後周世宗顯德六年（959年），橫跨1362年的歷史。司馬光在劉攽、劉恕與范祖禹的協助下，歷時十九年完成了這部巨著。 《資治通鑑》以其廣泛的史料引用聞名，不僅涵蓋了十七史，還包括各種雜史、私人撰述等。據《四庫提要》記載，《資治通鑑》引用前人著作達322種，可見其取材之廣泛及史料價值之高。 宋神宗認為此書「鑑於往事，有資於治道」，因而賜名《資治通鑑》。此書與司馬遷的《史記》並列為中國史學的兩大鉅著，影響深遠。 Zizhi Tongjian, also known as Comprehensive Mirror to Aid in Government, is a monumental historical work compiled in the chronological style by the renowned historian Sima Guang (1019-1086) during the Northern Song Dynasty. The work consists of 294 volumes, totaling approximately three million characters. It covers a span of 1,362 years, beginning with the twenty-third year of King Weilie of Zhou (403 BCE) and ending with the sixth year of Emperor Xiande of the Later Zhou (959 CE). Sima Guang, with the assistance of Liu Ban, Liu Su, and Fan Zuyu, spent nineteen years completing this monumental work. Zizhi Tongjian is famous for its extensive use of sources, including not only the seventeen dynastic histories but also various miscellaneous histories and private writings by others. According to the Four Treasuries Catalogue Siku Tiyao, Zizhi Tongjian cites 322 different works, highlighting its comprehensive nature and high historical value. ",
+    "cover_image": "http://localhost:3000/z-01.jpg",
+    "cover_video": "http://localhost:3000/z-01.mp4"
   },
   {
     "id": 6,
