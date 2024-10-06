@@ -74,12 +74,14 @@
   },
   {
     "id": 8,
-    "title": "The Hobbit",
-    "author": "J.R.R. Tolkien",
-    "publication_year": 1937,
-    "genre": ["Fantasy", "Adventure"],
-    "description": "The prequel to The Lord of the Rings, following Bilbo Baggins' journey.",
-    "cover_image": "https://fakeimg.pl/667x1000/cc6600"
+    "title": "《真希望你也喜欢自己》 True Hope You Also Like Yourself",
+    "author": "房琪 Fang Qi",
+    "publication_year": 2022,
+    "price": 49,
+    "genre": ["現代文學", "人文"],
+    "description": "《真希望你也喜欢自己》是房琪首部作品，也是她写给所有年轻人的“成长通关秘籍”。这本书记录了她个人成长的故事和经历，分享了她面对困难时的思考与选择。房琪在书中提出，每个人的成长道路虽然不同，但总会遇到相似的挑战和选择。她希望读者能从她的经历中找到共鸣，获得启发，找到属于自己的成长之路。房琪在书中强调，你不需要成为任何人，除了你自己。她认为，个人的成长和成功不应以成为别人为标准，而应以自我实现为目标。她鼓励年轻人要勇于面对挑战，不畏失败，坚持自己的热爱和追求。这本书还得到了杨天真、大冰、鲁豫、张含韵等人的推荐。他们认为房琪的故事和心法能给予正在成长的年轻人以指引和力量。房琪是一位知名的旅行内容创作者和主持人，她用视频和文字记录下自己走遍全国上百个城市的经历。她的作品以优美的文案和治愈人心的场景著称，她用自己的经历告诉我们，成功的背后是无数的艰辛和努力，她的“甜”都是用“苦”熬成的。 True Hope You Also Like Yourself is Fang Qi's debut work and also her growth pass secret book written for all young people. This book records her personal growth stories and experiences, sharing her thoughts and choices when facing difficulties. Fang Qi emphasizes in the book that although everyone's path of growth is different, we always encounter similar challenges and choices. She hopes that readers can find resonance in her experiences, gain inspiration, and find their own path to growth. Fang Qi states in the book, You don't need to be anyone, except yourself.She believes that personal growth and success should not be measured by becoming someone else but should aim for self-actualization. She encourages young people to face challenges bravely, not fear failure, and persist in their passions and pursuits. This book is also recommended by Yang Tianzhen, Da Bing, Lu Yu, Zhang Hanyun, and others. They believe that Fang Qi's stories and methods can guide and empower young people who are growing up. Fang Qi is a well-known travel content creator and host. She records her experiences of traveling to hundreds of cities across the country with videos and texts. Her works are known for their beautiful copywriting and healing scenes. With her own experience, she tells us that behind success are countless hardships and efforts; her sweetness is all refined from bitterness.",
+    "cover_image": "http://localhost:3000/f-01.png",
+    "cover_video": "http://localhost:3000/f-01.mp4"
   },
   {
     "id": 9,
