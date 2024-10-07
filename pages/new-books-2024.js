@@ -75,6 +75,17 @@ export default function NewBooks2024() {
                             language="zh"
                         />
                     </div>
+
+                    <video
+                            className={styles.video}
+                            width="640"
+                            height="480"
+                            controls
+                        >
+                            <source src="/video/ai-02.mp4" type="video/mp4" />
+                            您的瀏覽器不支援視頻標籤。
+                        </video>
+
                 </div>
 
                 <div>
@@ -124,17 +135,19 @@ export default function NewBooks2024() {
                             description="'The Little Prince' is a fairy tale written for adults, conveying profound life philosophies through the travels and experiences of the little prince."
                             language="en"
                         />
-
+                        
                     </div>
+
                     <video
                         className={styles.video}
                         width="640"
                         height="480"
                         controls
                     >
-                        <source src="/video-01.mp4" type="video/mp4" />
+                        <source src="/video/ai-01.mp4" type="video/mp4" />
                         您的瀏覽器不支援視頻標籤。
                     </video>
+
                 </div>
             </div>
 
