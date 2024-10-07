@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Howl } from 'howler';
 
@@ -25,13 +25,40 @@ const Game = () => {
     const [score, setScore] = useState(0);
     const router = useRouter();
 
-    const [sounds] = useState({
-        move: new Howl({ src: ['/sounds/move.mp3'] }),
-        rotate: new Howl({ src: ['/sounds/rotate.mp3'] }),
-        drop: new Howl({ src: ['/sounds/drop.mp3'] }),
-        clear: new Howl({ src: ['/sounds/clear.mp3'] }),
-        gameOver: new Howl({ src: ['/sounds/gameover.mp3'] }),
+    const soundsRef = useRef({
+        move: null,
+        rotate: null,
+        drop: null,
+        clear: null,
+        gameOver: null,
+        bgMusic: null
     });
+
+    const initializeSounds = useCallback(() => {
+        soundsRef.current = {
+            // move: new Howl({ src: ['/sounds/move.mp3'] }),
+            // rotate: new Howl({ src: ['/sounds/rotate.mp3'] }),
+            // drop: new Howl({ src: ['/sounds/drop.mp3'] }),
+            // clear: new Howl({ src: ['/sounds/clear.mp3'] }),
+            gameOver: new Howl({ src: ['/sounds/gameover.mp3'] }),
+            bgMusic: new Howl({
+                src: ['beyond-01.mp3'],
+                loop: true,
+                volume: 0.5
+            })
+        };
+    }, []);
+
+    useEffect(() => {
+        initializeSounds();
+    }, [initializeSounds]);
+
+    const playSound = useCallback((soundName) => {
+        const sound = soundsRef.current[soundName];
+        if (sound) {
+            sound.play();
+        }
+    }, []);
 
     const spawnNewPiece = useCallback(() => {
         const newPiece = TETROMINOS[Math.floor(Math.random() * TETROMINOS.length)];
@@ -76,16 +103,16 @@ const Game = () => {
         if (!currentPiece || gameOver) return;
         if (!isCollision(currentPiece, board, offsetX, offsetY)) {
             setCurrentPiece(prev => ({ ...prev, x: prev.x + offsetX, y: prev.y + offsetY }));
-            sounds.move.play();
+            playSound('move');
         } else if (offsetY > 0) {
             const newBoard = mergePieceToBoard(currentPiece, board);
             setBoard(newBoard);
             const clearedRows = newBoard.filter(row => row.every(cell => cell !== 0)).length;
             if (clearedRows > 0) {
                 setScore(prev => prev + clearedRows * 100);
-                sounds.clear.play();
+                playSound('clear');
             } else {
-                sounds.drop.play();
+                playSound('drop');
             }
             setBoard(prev => [
                 ...Array(clearedRows).fill().map(() => Array(BOARD_WIDTH).fill(0)),
@@ -93,7 +120,7 @@ const Game = () => {
             ]);
             spawnNewPiece();
         }
-    }, [currentPiece, board, gameOver, isCollision, mergePieceToBoard, spawnNewPiece, sounds]);
+    }, [currentPiece, board, gameOver, isCollision, mergePieceToBoard, spawnNewPiece, playSound]);
 
     const rotatePiece = useCallback(() => {
         if (!currentPiece || gameOver) return;
@@ -105,9 +132,9 @@ const Game = () => {
         };
         if (!isCollision(rotated, board)) {
             setCurrentPiece(rotated);
-            sounds.rotate.play();
+            playSound('rotate');
         }
-    }, [currentPiece, board, gameOver, isCollision, sounds]);
+    }, [currentPiece, board, gameOver, isCollision, playSound]);
 
     useEffect(() => {
         const handleKeyPress = (event) => {
@@ -156,16 +183,40 @@ const Game = () => {
     useEffect(() => {
         if (currentPiece && isCollision(currentPiece, board, 0, 0)) {
             setGameOver(true);
-            sounds.gameOver.play();
+            playSound('gameOver');
+            soundsRef.current.bgMusic.stop();
         }
-    }, [currentPiece, board, isCollision, sounds]);
+    }, [currentPiece, board, isCollision, playSound]);
 
-    const restartGame = () => {
+    useEffect(() => {
+        if (!gameOver) {
+            soundsRef.current.bgMusic.play();
+        }
+
+        return () => {
+            soundsRef.current.bgMusic.stop();
+        };
+    }, [gameOver]);
+
+    const restartGame = useCallback(() => {
+        // Stop all current sounds
+        Object.values(soundsRef.current).forEach(sound => {
+            if (sound && sound.stop) {
+                sound.stop();
+            }
+        });
+
+        // Reinitialize sounds
+        initializeSounds();
+
         setBoard(createEmptyBoard());
         setCurrentPiece(null);
         setGameOver(false);
         setScore(0);
-    };
+
+        // Play background music
+        soundsRef.current.bgMusic.play();
+    }, [initializeSounds]);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
