@@ -24,10 +24,7 @@ export default function About() {
         <Link href="/contact" color="inherit" style={{ textDecoration: 'none', color: '#337ab7', fontSize: '18px', fontWeight: 'bold', padding: '10px', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', animation: 'fadeIn 2s' }}>
           聯繫我們
         </Link>
-        {/* <video width="640" height="480" controls>
-          <source src="/video-01.mp4" type="video/mp4" />
-          您的瀏覽器不支援視頻標籤。
-        </video> */}
+     
         <video
           className={styles.video}
           width="640"
