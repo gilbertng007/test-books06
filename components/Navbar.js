@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Badge } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Badge, Menu, MenuItem } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
+import BookIcon from '@mui/icons-material/Book';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import BookIcon from '@mui/icons-material/Book';
 import Confetti from 'react-confetti';
 import { Howl } from 'howler';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -78,7 +79,7 @@ const WavingFlagButton = ({ onClick, isVisible }) => {
 
 const Banana = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [direction, setDirection] = useState(1); // 1 for right, -1 for left
+  const [direction, setDirection] = useState(1);
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const router = useRouter();
 
@@ -165,6 +166,7 @@ export default function Navbar() {
   const [playMusic, setPlayMusic] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const soundRef = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleLinkClick = () => {
     if (!soundRef.current) {
@@ -190,6 +192,14 @@ export default function Navbar() {
       }
       setIsPlaying(!isPlaying);
     }
+  };
+
+  const handleForeignPublicationsClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   useEffect(() => {
@@ -230,6 +240,24 @@ export default function Navbar() {
             >
               我的訂單
             </Button>
+            <Button
+              color="inherit"
+              onClick={handleForeignPublicationsClick}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+              endIcon={<ArrowDropDownIcon />}
+            >
+              外国出版
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => { router.push('/foreign-publications/english'); handleClose(); }}>英文書籍</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/japanese'); handleClose(); }}>日文書籍</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/french'); handleClose(); }}>法文書籍</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/germany'); handleClose(); }}>德文書籍</MenuItem>
+            </Menu>
             <IconButton
               color="inherit"
               onClick={() => router.push('/cart')}
@@ -276,3 +304,4 @@ export default function Navbar() {
     </div>
   );
 }
+

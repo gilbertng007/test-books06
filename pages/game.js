@@ -48,7 +48,9 @@ const Game = () => {
                     short: [0, 500] // Play from 0 to 500 milliseconds (0.5 seconds)
                 }
             }),
+            
             // drop: new Howl({ src: ['/sounds/drop.mp3'] }),
+
             clear: new Howl({
                 src: ['/sounds/move.mp3'],
                 sprite: {
