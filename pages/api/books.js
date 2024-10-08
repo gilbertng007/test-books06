@@ -5,7 +5,7 @@ import path from 'path';
 // 将箭头函数赋值给一个变量
 const handler = (req, res) => {
   if (req.method === 'GET') {
-    const filePath = path.join(process.cwd(), 'pages/api/booksdata.json');
+    const filePath = path.join(process.cwd(), 'pages/api/books.json');
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         console.error(err);
