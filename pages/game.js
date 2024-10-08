@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Howl } from 'howler';
@@ -37,15 +36,25 @@ const Game = () => {
 
     const initializeSounds = useCallback(() => {
         soundsRef.current = {
-            // move: new Howl({ src: ['/sounds/move.mp3'] }),
+            move: new Howl({
+                src: ['/sounds/clear.mp3'],
+                sprite: {
+                    short: [0, 250] // Play from 0 to 250 milliseconds (0.25 seconds)
+                }
+            }),
             rotate: new Howl({
                 src: ['/sounds/rotate.mp3'],
                 sprite: {
-                    short: [0, 500] // Play from 0 to 2000 milliseconds (0.5 seconds)
+                    short: [0, 500] // Play from 0 to 500 milliseconds (0.5 seconds)
                 }
             }),
             // drop: new Howl({ src: ['/sounds/drop.mp3'] }),
-            // clear: new Howl({ src: ['/sounds/clear.mp3'] }),
+            clear: new Howl({
+                src: ['/sounds/move.mp3'],
+                sprite: {
+                    short: [0, 500] // Play from 0 to 500 milliseconds (0.5 seconds)
+                }
+            }),
             gameOver: new Howl({ src: ['/sounds/gameover.mp3'] }),
             bgMusic: new Howl({
                 src: ['beyond-01.mp3'],
@@ -62,7 +71,7 @@ const Game = () => {
     const playSound = useCallback((soundName) => {
         const sound = soundsRef.current[soundName];
         if (sound) {
-            if (soundName === 'rotate') {
+            if (soundName === 'move' || soundName === 'rotate' || soundName === 'clear') {
                 sound.play('short');
             } else {
                 sound.play();
@@ -272,3 +281,4 @@ const Game = () => {
 };
 
 export default Game;
+
