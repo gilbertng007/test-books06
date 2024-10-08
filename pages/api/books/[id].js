@@ -5,7 +5,7 @@ export default function handler(req, res) {
   const { id } = req.query;
 
   // 构建 JSON 文件的路径
-  const booksPath = path.join(process.cwd(), 'books.json');
+  const booksPath = path.join(process.cwd(), 'pages/api/booksdata.json');
 
   // 读取 JSON 文件
   fs.readFile(booksPath, 'utf8', (err, data) => {

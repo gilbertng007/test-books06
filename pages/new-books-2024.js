@@ -94,45 +94,45 @@ export default function NewBooks2024() {
                         <BookCard
                             title="Understanding AI Series"
                             author="Qiu Ye"
-                            description="The works by Qiu Ye, 'Understanding AI Writing,' 'Understanding AI Questioning,' and 'Understanding AI Design,' have secured significant positions on the bestseller lists of 2024. This series aims to help readers quickly understand and apply AI technology in writing, questioning, and design, and has been widely welcomed."
+                            description="The works by Qiu Ye, &apos;Understanding AI Writing,&apos; &apos;Understanding AI Questioning,&apos; and &apos;Understanding AI Design,&apos; have secured significant positions on the bestseller lists of 2024. This series aims to help readers quickly understand and apply AI technology in writing, questioning, and design, and has been widely welcomed."
                             language="en"
                         />
                         <BookCard
                             title="The End of Love"
-                            description="'The End of Love' is a new book released in October of the previous year. It explores the transformation and challenges of love in modern society, as well as the complex mindset people face in romantic relationships."
+                            description="&apos;The End of Love&apos; is a new book released in October of the previous year. It explores the transformation and challenges of love in modern society, as well as the complex mindset people face in romantic relationships."
                             language="en"
                         />
                         <BookCard
                             title="The Anxious People"
-                            description="'The Anxious People' is a novel that tells the story of ordinary people through unexpected settings, showcasing the pervasive sense of anxiety present in today's society through these characters' lives."
+                            description="&apos;The Anxious People&apos; is a novel that tells the story of ordinary people through unexpected settings, showcasing the pervasive sense of anxiety present in today&apos;s society through these characters&apos; lives."
                             language="en"
                         />
                         <BookCard
                             title="Who Do You Think You Are?"
                             author="Alice Munro"
-                            description="Nobel Prize laureate Alice Munro's new work, 'Who Do You Think You Are?', delves into the issue of individual identity through a series of short stories that showcase the process of character growth."
+                            description="Nobel Prize laureate Alice Munro&apos;s new work, &apos;Who Do You Think You Are?&apos;, delves into the issue of individual identity through a series of short stories that showcase the process of character growth."
                             language="en"
                         />
                         <BookCard
                             title="The Camellia Stationery Shop"
-                            description="'The Camellia Stationery Shop' tells the story of a Japanese stationery shop specializing in letter writing, exploring the clash between traditional and modern culture from the perspective of the shop owner."
+                            description="&apos;The Camellia Stationery Shop&apos; tells the story of a Japanese stationery shop specializing in letter writing, exploring the clash between traditional and modern culture from the perspective of the shop owner."
                             language="en"
                         />
                         <BookCard
                             title="1587, A Year of No Significance"
-                            description="'1587, A Year of No Significance' offers a unique interpretation of Chinese history, particularly focusing on the political, cultural, and social landscape during the Ming Dynasty."
+                            description="&apos;1587, A Year of No Significance&apos; offers a unique interpretation of Chinese history, particularly focusing on the political, cultural, and social landscape during the Ming Dynasty."
                             language="en"
                         />
                         <BookCard
                             title="To Kill a Mockingbird"
                             author="Harper Lee"
-                            description="'To Kill a Mockingbird' is a classic coming-of-age novel that observes the complexities of the adult world through the eyes of a young girl."
+                            description="&apos;To Kill a Mockingbird&apos; is a classic coming-of-age novel that observes the complexities of the adult world through the eyes of a young girl."
                             language="en"
                         />
                         <BookCard
                             title="The Little Prince"
                             author="Antoine de Saint-Exupéry"
-                            description="'The Little Prince' is a fairy tale written for adults, conveying profound life philosophies through the travels and experiences of the little prince."
+                            description="&apos;The Little Prince&apos; is a fairy tale written for adults, conveying profound life philosophies through the travels and experiences of the little prince."
                             language="en"
                         />
                         
@@ -155,10 +155,8 @@ export default function NewBooks2024() {
 
             <footer className="text-center text-gray-600 text-sm">
                 <p>這些書籍涵蓋了多種主題，從科技、文學到個人成長和社會觀察，反映了當前讀者的興趣和關注點。</p>
-                <p className="mt-2">These books cover a wide range of topics, from technology and literature to personal growth and social observation, reflecting current readers' interests and concerns.</p>
+                <p className="mt-2">These books cover a wide range of topics, from technology and literature to personal growth and social observation, reflecting current readers&apos; interests and concerns.</p>
             </footer>
         </div>
     );
 }
-
-
