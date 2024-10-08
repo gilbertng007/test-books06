@@ -58,15 +58,15 @@ const books = [
     genre: "Adventure Fiction",
     awards: ["One of the Great American Novels"],
     synopsis: "The saga of Captain Ahab and his monomaniacal pursuit of the white whale Moby Dick, told through the eyes of sailor Ishmael.",
-    cover: "/placeholder.svg?height=400&width=300&text=Moby-Dick",
+    cover: "/images/md-01.png?height=400&width=300&text=Moby-Dick",
     rating: 4.4,
     pages: 720,
     price: 12.99,
     images: [
-      "/placeholder.svg?height=200&width=300&text=Whaling+Ship",
-      "/placeholder.svg?height=200&width=300&text=White+Whale",
+      "/images/md-02.jpg?height=200&width=300&text=Whaling+Ship",
+      "/images/md-03.jpeg?height=200&width=300&text=White+Whale",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/md-01.mp4"
   },
   {
     title: "Jane Eyre",
