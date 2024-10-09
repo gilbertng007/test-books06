@@ -261,17 +261,17 @@ export default function Navbar() {
                         className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
                         endIcon={<ArrowDropDownIcon />}
                     >
-                        外国出版
+                        海外分站書店
                     </Button>
                     <Menu
                         anchorEl={anchorEl}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={() => { router.push('/foreign-publications/english'); handleClose(); }}>英文書籍</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/japanese'); handleClose(); }}>日文書籍</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/french'); handleClose(); }}>法文書籍</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/germany'); handleClose(); }}>德文書籍</MenuItem>
+                        <MenuItem onClick={() => { router.push('/foreign-publications/english'); handleClose(); }}>北美書店</MenuItem>
+                        <MenuItem onClick={() => { router.push('/foreign-publications/japanese'); handleClose(); }}>日本書店</MenuItem>
+                        <MenuItem onClick={() => { router.push('/foreign-publications/french'); handleClose(); }}>法國書店</MenuItem>
+                        <MenuItem onClick={() => { router.push('/foreign-publications/germany'); handleClose(); }}>德國書店</MenuItem>
                     </Menu>
                     <IconButton
                         color="inherit"
