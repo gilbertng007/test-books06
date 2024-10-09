@@ -92,15 +92,15 @@ const books = [
     genre: "Coming-of-age Fiction",
     awards: ["Modern Library's 100 Best Novels"],
     synopsis: "Holden Caulfield's experiences in New York City after being expelled from his prep school, exploring themes of teenage angst and alienation.",
-    cover: "/placeholder.svg?height=400&width=300&text=The+Catcher+in+the+Rye",
+    cover: "/images/e-c01.png?height=400&width=300&text=The+Catcher+in+the+Rye",
     rating: 4.3,
     pages: 234,
     price: 9.99,
     images: [
-      "/placeholder.svg?height=200&width=300&text=New+York+City",
-      "/placeholder.svg?height=200&width=300&text=Central+Park",
+      "/images/e-c02.png?height=200&width=300&text=New+York+City",
+      "/images/e-c03.png?height=200&width=300&text=Central+Park",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/e-c01.mp4"
   },
   {
     title: "Brave New World",
