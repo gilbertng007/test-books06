@@ -278,7 +278,7 @@ export default function FrenchGradientBooksPage() {
                     style={{fontFamily: 'Open Sans, sans-serif'}}
                   >
                     <Video className="mr-2" size={24} />
-                    Voir l'aperçu
+                    Voir l'aperçu0
                   </button>
                 )}
               </div>

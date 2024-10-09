@@ -58,15 +58,15 @@ const books = [
     genre: "文学小説",
     awards: ["ノーベル文学賞"],
     synopsis: "豪雪地帯を舞台に、都会から来た男と温泉町の芸者との儚い恋を描いた名作。",
-    cover: "/placeholder.svg?height=400&width=300&text=雪国",
+    cover: "/images/sgb-02.png?height=400&width=300&text=雪国",
     rating: 4.5,
     pages: 175,
     price: 1200,
     images: [
-      "/placeholder.svg?height=200&width=300&text=雪景色",
-      "/placeholder.svg?height=200&width=300&text=温泉旅館",
+      "/images/sg-01.png?height=200&width=300&text=雪景色",
+      "/images/sg-02.png?height=200&width=300&text=温泉旅館",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/sg-04.mp4"
   },
   {
     title: "こころ",
