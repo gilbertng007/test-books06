@@ -58,15 +58,15 @@ const books = [
     genre: "Roman historique",
     awards: ["Prix du Goncourt (posthume)"],
     synopsis: "L'histoire de Jean Valjean, un ancien forçat en quête de rédemption, dans le Paris du 19e siècle.",
-    cover: "/placeholder.svg?height=400&width=300&text=Les+Misérables",
+    cover: "/images/f-01.jpeg?height=400&width=300&text=Les+Misérables",
     rating: 4.7,
     pages: 1488,
     price: 24.99,
     images: [
-      "/placeholder.svg?height=200&width=300&text=Paris+19e+siècle",
-      "/placeholder.svg?height=200&width=300&text=Barricades",
+      "/images/f-02.jpeg?height=200&width=300&text=Paris+19e+siècle",
+      "/images/f-03.jpeg?height=200&width=300&text=Barricades",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/f-01.mp4"
   },
   {
     title: "Le Petit Prince",

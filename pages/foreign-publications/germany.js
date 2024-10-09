@@ -58,15 +58,15 @@ const books = [
     genre: "Existenzieller Roman",
     awards: ["Einer der einflussreichsten Romane des 20. Jahrhunderts"],
     synopsis: "Josef K. wird eines Morgens verhaftet und in einen surrealen Gerichtsprozess verwickelt, ohne zu wissen, was ihm vorgeworfen wird.",
-    cover: "/placeholder.svg?height=400&width=300&text=Der+Prozess",
+    cover: "/images/g-01.png?height=400&width=300&text=Der+Prozess",
     rating: 4.6,
     pages: 304,
     price: 14.99,
     images: [
-      "/placeholder.svg?height=200&width=300&text=Prag",
-      "/placeholder.svg?height=200&width=300&text=Gerichtssaal",
+      "/images/g-02.jpeg?height=200&width=300&text=Prag",
+      "/images/g-03.jpeg?height=200&width=300&text=Gerichtssaal",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/g-01.mp4"
   },
   {
     title: "Faust",
