@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Typography, Container, Grid, Button, TextField } from '@mui/material';
-import axios from 'axios';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import styles from '../Book.module.css';
 
 export default function BookDetail() {
@@ -9,17 +10,23 @@ export default function BookDetail() {
     const { id } = router.query;
     const [book, setBook] = useState(null);
     const [quantity, setQuantity] = useState(1);
-    const [videoUrl, setVideoUrl] = useState(null); // new state variable to store video URL
-    const [addedToCart, setAddedToCart] = useState(false); // new state variable to track if order has been added to cart
-    const [showMessage, setShowMessage] = useState(false); // new state variable to show the message
+    const [videoUrl, setVideoUrl] = useState(null);
+    const [addedToCart, setAddedToCart] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
         if (id) {
             const fetchBook = async () => {
                 try {
-                    const response = await axios.get(`/api/books/${id}`);
-                    setBook(response.data);
-                    setVideoUrl(response.data.cover_video); // set video URL from API response
+                    const response = await fetch(`/api/books/${id}`);
+                    const data = await response.json();
+                    setBook(data);
+                    setVideoUrl(data.cover_video);
+                    
+                    // Check if the book is in favorites
+                    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                    setIsFavorite(favorites.includes(id));
                 } catch (error) {
                     console.error('Error fetching book details:', error);
                 }
@@ -30,21 +37,38 @@ export default function BookDetail() {
 
     const addToCart = async () => {
         try {
-            const response = await axios.post('/api/cart', {
-                bookId: id,
-                quantity: quantity,
+            const response = await fetch('/api/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    bookId: id,
+                    quantity: quantity,
+                }),
             });
-            console.log(response.data);
+            const data = await response.json();
+            console.log(data);
             setAddedToCart(true);
             setShowMessage(true);
             setTimeout(() => {
                 setShowMessage(false);
-                setQuantity(1); // reset quantity to 1
-                router.push(router.asPath); // reload the page
+                setQuantity(1);
+                router.push(router.asPath);
             }, 2000);
         } catch (error) {
             console.error('Error adding to cart:', error);
         }
+    };
+
+    const toggleFavorite = () => {
+        const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+        const newFavorites = isFavorite
+            ? favorites.filter(bookId => bookId !== id)
+            : [...favorites, id];
+        
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        setIsFavorite(!isFavorite);
     };
 
     return (
@@ -89,6 +113,14 @@ export default function BookDetail() {
                                 />
                                 <Button variant="contained" color="primary" onClick={addToCart}>
                                     加入購物車
+                                </Button>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    onClick={toggleFavorite}
+                                    startIcon={isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                                >
+                                    {isFavorite ? '取消收藏' : '收藏'}
                                 </Button>
                             </div>
                             {showMessage && (

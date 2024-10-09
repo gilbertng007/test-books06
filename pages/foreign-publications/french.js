@@ -127,6 +127,9 @@ export default function FrenchGradientBooksPage() {
   const [showVideo, setShowVideo] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [showToast, setShowToast] = useState(false)
+  const [cart, setCart] = useState([])
+  const [showFavorites, setShowFavorites] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
   const nextBook = () => {
     setCurrentBook((prev) => (prev + 1) % books.length)
@@ -149,8 +152,26 @@ export default function FrenchGradientBooksPage() {
   }
 
   const addToCart = () => {
+    const newItem = {
+      ...books[currentBook],
+      quantity: quantity
+    }
+    setCart(prevCart => [...prevCart, newItem])
     setShowToast(true)
     setQuantity(1)
+    setShowCart(true)
+  }
+
+  const removeFromCart = (index) => {
+    setCart(prevCart => prevCart.filter((_, i) => i !== index))
+  }
+
+  const toggleFavorites = () => {
+    setShowFavorites(!showFavorites)
+  }
+
+  const toggleCart = () => {
+    setShowCart(!showCart)
   }
 
   useEffect(() => {
@@ -167,7 +188,7 @@ export default function FrenchGradientBooksPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-100 via-rose-200 to-teal-200 flex items-center justify-center p-4 sm:p-8">
-      <div className="max-w-6xl w-full bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-2xl overflow-hidden">
+      <div className="max-w-6xl w-full bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-2xl overflow-hidden relative">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
           <div className="lg:col-span-1">
             <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
@@ -205,7 +226,7 @@ export default function FrenchGradientBooksPage() {
                   <Heart size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
                 </button>
               </div>
-              <button onClick={nextBook} className="text-amber-600 hover:text-amber-800 transition-colors" aria-label="Livre suivant">
+              <button onClick={nextBook} className="text-amber-600 hover:text-amber-800 transition-colors" aria-label="Livre  suivant">
                 <ChevronRight size={28} />
               </button>
             </div>
@@ -218,7 +239,6 @@ export default function FrenchGradientBooksPage() {
                   <span className="text-amber-700" style={{fontFamily: 'Libre Baskerville, serif'}}>{books[currentBook].year}</span>
                 </div>
                 <div className="flex items-center mb-2 sm:mb-0">
-                
                   <Book className="w-5 h-5 text-amber-500 mr-2" />
                   <span className="text-amber-700" style={{fontFamily: 'Montserrat, sans-serif'}}>{books[currentBook].genre}</span>
                 </div>
@@ -278,7 +298,7 @@ export default function FrenchGradientBooksPage() {
                     style={{fontFamily: 'Open Sans, sans-serif'}}
                   >
                     <Video className="mr-2" size={24} />
-                    Voir l'aperçu0
+                    Voir l'aperçu
                   </button>
                 )}
               </div>
@@ -319,7 +339,100 @@ export default function FrenchGradientBooksPage() {
             </div>
           </div>
         </div>
+
+        {/* "My Favorites" button */}
+        <button 
+          onClick={toggleFavorites}
+          className="absolute top-4 right-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full transition-colors"
+          style={{fontFamily: 'Raleway, sans-serif'}}
+        >
+          Mes Favoris
+        </button>
+
+        {/* "Shopping Cart" button */}
+        <button 
+          onClick={toggleCart}
+          className="absolute top-4 right-40 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full transition-colors flex items-center"
+          style={{fontFamily: 'Raleway, sans-serif'}}
+        >
+          <ShoppingCart className="mr-2" size={20} />
+          <span>Panier ({cart.length})</span>
+        </button>
+
+        {/* Favorites modal */}
+        {showFavorites && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-auto">
+              <h2 className="text-2xl font-bold mb-4">Mes Favoris</h2>
+              {favorites.length > 0 ? (
+                favorites.map((index) => (
+                  <div key={index} className="mb-4 p-4 border rounded-lg">
+                    <h3 className="text-xl font-semibold">{books[index].title}</h3>
+                    <p>{books[index].author}</p>
+                  </div>
+                ))
+              ) : (
+                <p>Vous n'avez pas encore de favoris.</p>
+              )}
+              <button 
+                onClick={toggleFavorites}
+                className="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full transition-colors"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Shopping cart modal */}
+        {showCart && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-auto">
+              <h2 className="text-2xl font-bold mb-4">Votre Panier</h2>
+              {cart.length > 0 ? (
+                <>
+                  {cart.map((item, index) => (
+                    <div key={index} className="mb-4 p-4 border rounded-lg flex justify-between items-center">
+                      <div>
+                        <h3 className="text-xl font-semibold">{item.title}</h3>
+                        <p>Quantité: {item.quantity}</p>
+                        <p>Prix: {(item.price * item.quantity).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
+                      </div>
+                      <button 
+                        onClick={() => removeFromCart(index)}
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded transition-colors"
+                      >
+                        Supprimer
+                      </button>
+                    </div>
+                  ))}
+                  <div className="mt-4 text-xl font-bold">
+                    Total: {cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}
+                  </div>
+                  <button 
+                    onClick={() => {
+                      setCart([])
+                      setShowCart(false)
+                    }}
+                    className="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full transition-colors"
+                  >
+                    Passer la commande
+                  </button>
+                </>
+              ) : (
+                <p>Votre panier est vide.</p>
+              )}
+              <button 
+                onClick={toggleCart}
+                className="mt-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition-colors"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        )}
       </div>
+
       {showToast && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
           <span className="mr-2" style={{fontFamily: 'Roboto, sans-serif'}}>Ajouté au panier !</span>

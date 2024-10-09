@@ -1,5 +1,8 @@
 
+'use client'
+
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 // SVG icons
 const ChevronLeft = (props) => (
@@ -127,6 +130,9 @@ export default function GermanGradientBooksPage() {
   const [showVideo, setShowVideo] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [showToast, setShowToast] = useState(false)
+  const [cart, setCart] = useState([])
+  const [showFavorites, setShowFavorites] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
   const nextBook = () => {
     setCurrentBook((prev) => (prev + 1) % books.length)
@@ -149,9 +155,25 @@ export default function GermanGradientBooksPage() {
   }
 
   const addToCart = () => {
+    const newItem = {
+      ...books[currentBook],
+      quantity: quantity
+    }
+    setCart(prevCart => [...prevCart, newItem])
     setShowToast(true)
     setQuantity(1)
   }
+
+  const removeFromCart = (index) => {
+    setCart(prevCart => prevCart.filter((_, i) => i !== index))
+  }
+
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0)
+  }
+
+  const incrementQuantity = () => setQuantity(prev => prev + 1)
+  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
 
   useEffect(() => {
     if (showToast) {
@@ -162,19 +184,17 @@ export default function GermanGradientBooksPage() {
     }
   }, [showToast])
 
-  const incrementQuantity = () => setQuantity(prev => prev + 1)
-  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-100 via-sky-200 to-indigo-300 flex items-center justify-center p-4 sm:p-8">
       <div className="max-w-6xl w-full bg-white bg-opacity-90 backdrop-blur-lg rounded-xl shadow-2xl overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
           <div className="lg:col-span-1">
             <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <img 
+              <Image 
                 src={books[currentBook].cover} 
                 alt={`Buchcover von ${books[currentBook].title}`} 
-                className="absolute inset-0 w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -200,6 +220,7 @@ export default function GermanGradientBooksPage() {
                 <button 
                   onClick={toggleFavorite} 
                   className={`text-emerald-600 hover:text-emerald-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500 hover:text-red-600' : ''}`}
+                  
                   aria-label={favorites.includes(currentBook) ? "Von Favoriten entfernen" : "Zu Favoriten hinzufügen"}
                 >
                   <Heart size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
@@ -254,7 +275,7 @@ export default function GermanGradientBooksPage() {
                 <div className="grid grid-cols-2 gap-4">
                   {books[currentBook].images.map((image, index) => (
                     <div key={index} className="relative aspect-w-3 aspect-h-2 rounded-lg overflow-hidden shadow-md">
-                      <img src={image} alt={`Bild ${index + 1} zu ${books[currentBook].title}`} className="object-cover" />
+                      <Image src={image} alt={`Bild ${index + 1} zu ${books[currentBook].title}`} layout="fill" objectFit="cover" />
                     </div>
                   ))}
                 </div>
@@ -318,9 +339,123 @@ export default function GermanGradientBooksPage() {
             </div>
           </div>
         </div>
+        
+        {/* New buttons for My Favorites and Shopping Cart */}
+        <div className="mt-4 flex justify-end space-x-4 px-8 pb-8">
+          <button
+            onClick={() => setShowFavorites(true)}
+            className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition-colors"
+          >
+            <Heart className="mr-2" size={20} />
+            Meine Favoriten
+          </button>
+          <button
+            onClick={() => setShowCart(true)}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition-colors"
+          >
+            <ShoppingCart className="mr-2" size={20} />
+            Warenkorb
+          </button>
+        </div>
       </div>
+
+      {/* Favorites Modal */}
+      {showFavorites && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+            <h2 className="text-2xl font-bold mb-4">Meine Favoriten</h2>
+            {favorites.length > 0 ? (
+              <ul>
+                {favorites.map((index) => (
+                  <li key={index} className="mb-2 flex items-center">
+                    <Image 
+                      src={books[index].cover} 
+                      alt={`Cover von ${books[index].title}`} 
+                      width={50} 
+                      height={75} 
+                      className="mr-4"
+                    />
+                    <div>
+                      <h3 className="font-semibold">{books[index].title}</h3>
+                      <p className="text-sm text-gray-600">{books[index].author}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>Sie haben noch keine Favoriten hinzugefügt.</p>
+            )}
+            <button
+              onClick={() => setShowFavorites(false)}
+              className="mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded transition-colors"
+            >
+              Schließen
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Shopping Cart Modal */}
+      {showCart && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-lg w-full">
+            <h2 className="text-2xl font-bold mb-4">Warenkorb</h2>
+            {cart.length > 0 ? (
+              <>
+                <ul>
+                  {cart.map((item, index) => (
+                    <li key={index} className="mb-4 flex justify-between items-center">
+                      <div className="flex items-center">
+                        <Image 
+                          src={item.cover} 
+                          alt={`Cover von ${item.title}`} 
+                          width={50} 
+                          height={75} 
+                          className="mr-4"
+                        />
+                        <div>
+                          <h3 className="font-semibold">{item.title}</h3>
+                          <p className="text-sm text-gray-600">Menge: {item.quantity}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="mr-4">{(item.price * item.quantity).toFixed(2)} €</span>
+                        <button
+                          onClick={() => removeFromCart(index)}
+                          className="text-red-500 hover:text-red-700 transition-colors"
+                          aria-label={`${item.title} aus dem Warenkorb entfernen`}
+                        >
+                          <X size={20} />
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 text-xl font-bold">
+                  Gesamtsumme: {getTotalPrice().toFixed(2)} €
+                </div>
+                <button
+                  className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full transition-colors"
+                >
+                  Zur Kasse
+                </button>
+              </>
+            ) : (
+              <p>Ihr Warenkorb ist leer.</p>
+            )}
+            <button
+              onClick={() => setShowCart(false)}
+              className="mt-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded w-full transition-colors"
+            >
+              Schließen
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Toast Notification */}
       {showToast && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
+        <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center z-50">
           <span className="mr-2" style={{fontFamily: 'Roboto, sans-serif'}}>Zum Warenkorb hinzugefügt!</span>
           <button onClick={() => setShowToast(false)} className="text-white" aria-label="Benachrichtigung schließen">
             <X size={20} />
