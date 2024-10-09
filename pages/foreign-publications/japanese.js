@@ -1,4 +1,6 @@
 
+'use client'
+
 import { useState, useEffect } from 'react'
 
 // SVG icons
@@ -75,15 +77,15 @@ const books = [
     genre: "心理小説",
     awards: ["文化勲章"],
     synopsis: "明治から大正への変わり目を背景に、「私」「先生」「Ｋ」の三者の心の動きを鋭く描写した傑作。",
-    cover: "/placeholder.svg?height=400&width=300&text=こころ",
+    cover: "/images/j-01.jpg?height=400&width=300&text=こころ",
     rating: 4.7,
     pages: 248,
     price: 880,
     images: [
-      "/placeholder.svg?height=200&width=300&text=東京の街並み",
-      "/placeholder.svg?height=200&width=300&text=書斎",
+      "/images/j-02.png?height=200&width=300&text=東京の街並み",
+      "/images/j-03.png?height=200&width=300&text=書斎",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/j-01.mp4"
   },
   {
     title: "人間失格",
@@ -127,6 +129,8 @@ export default function JapaneseGradientBooksPage() {
   const [showVideo, setShowVideo] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [showToast, setShowToast] = useState(false)
+  const [cart, setCart] = useState([])
+  const [showFavorites, setShowFavorites] = useState(false)
 
   const nextBook = () => {
     setCurrentBook((prev) => (prev + 1) % books.length)
@@ -149,6 +153,11 @@ export default function JapaneseGradientBooksPage() {
   }
 
   const addToCart = () => {
+    const bookToAdd = {
+      ...books[currentBook],
+      quantity: quantity
+    }
+    setCart(prev => [...prev, bookToAdd])
     setShowToast(true)
     setQuantity(1)
   }
@@ -164,6 +173,15 @@ export default function JapaneseGradientBooksPage() {
 
   const incrementQuantity = () => setQuantity(prev => prev + 1)
   const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
+
+  const toggleFavorites = () => setShowFavorites(prev => !prev)
+
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => {
+      const itemPrice = item.price || 0
+      return total + itemPrice * item.quantity
+    }, 0)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-200 to-indigo-300 flex items-center justify-center p-4 sm:p-8">
@@ -202,7 +220,7 @@ export default function JapaneseGradientBooksPage() {
                   className={`text-indigo-600 hover:text-indigo-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500 hover:text-red-600' : ''}`}
                   aria-label={favorites.includes(currentBook) ? "お気に入りから削除" : "お気に入りに追加"}
                 >
-                  <Heart size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
+                  <Heart size={24}   fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
                 </button>
               </div>
               <button onClick={nextBook} className="text-indigo-600 hover:text-indigo-800 transition-colors" aria-label="Next book">
@@ -318,6 +336,60 @@ export default function JapaneseGradientBooksPage() {
             </div>
           </div>
         </div>
+        
+        {/* Cart and Favorites buttons */}
+        <div className="flex justify-between p-4 bg-indigo-100">
+          <button 
+            onClick={() => setShowFavorites(false)}
+            className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors"
+          >
+            カートを表示 ({cart.length})
+          </button>
+          <button 
+            onClick={toggleFavorites}
+            className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors"
+          >
+            {showFavorites ? 'お気に入りを隠す' : 'お気に入りを表示'} ({favorites.length})
+          </button>
+        </div>
+        
+        {/* Cart or Favorites display */}
+        {(cart.length > 0 || favorites.length > 0) && (
+          <div className="p-4 bg-white">
+            <h2 className="text-2xl font-bold mb-4" style={{fontFamily: '"Noto Serif JP", serif'}}>
+              {showFavorites ? 'お気に入り' : 'カート'}
+            </h2>
+            {showFavorites ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {favorites.map((bookIndex) => (
+                  <div key={bookIndex} className="border p-4 rounded-lg">
+                    <img src={books[bookIndex].cover} alt={books[bookIndex].title} className="w-full h-40 object-cover mb-2 rounded" />
+                    <h3 className="font-semibold">{books[bookIndex].title}</h3>
+                    <p>{books[bookIndex].author}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div>
+                {cart.map((item, index) => (
+                  <div key={index} className="flex items-center justify-between border-b py-2">
+                    <div>
+                      <h3 className="font-semibold">{item.title}</h3>
+                      <p>数量: {item.quantity}</p>
+                    </div>
+                    <p>¥{((item.price || 0) * item.quantity).toLocaleString()}</p>
+                  </div>
+                ))}
+                <div className="mt-4 text-right">
+                  <p className="text-xl font-bold">合計: ¥{getTotalPrice().toLocaleString()}</p>
+                  <button className="mt-2 bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors">
+                    注文する
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       {showToast && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
