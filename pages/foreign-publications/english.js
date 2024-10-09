@@ -75,15 +75,15 @@ const books = [
     genre: "Gothic Romance",
     awards: ["Penguin Classics' Top 100 Books"],
     synopsis: "The story of orphan Jane Eyre and her journey from a difficult childhood to finding love with the enigmatic Mr. Rochester.",
-    cover: "/placeholder.svg?height=400&width=300&text=Jane+Eyre",
+    cover: "/images/e-b01.png/?height=400&width=300&text=Jane+Eyre",
     rating: 4.7,
     pages: 532,
     price: 10.99,
     images: [
-      "/placeholder.svg?height=200&width=300&text=Thornfield+Hall",
-      "/placeholder.svg?height=200&width=300&text=Victorian+Era",
+      "/images/e-b02.png?height=200&width=300&text=Thornfield+Hall",
+      "/images/e-b03.png?height=200&width=300&text=Victorian+Era",
     ],
-    video: "/placeholder.mp4"
+    video: "/video/e-b01.mp4"
   },
   {
     title: "The Catcher in the Rye",
