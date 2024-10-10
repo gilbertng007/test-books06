@@ -15,13 +15,15 @@ function MyApp({ Component, pageProps, router }) {
     const isGamePage = router.pathname === '/game';
     const isEnglishPage = router.pathname === '/foreign-publications/english';
     const isJanpanesePage = router.pathname === '/foreign-publications/japanese';
+    const isFrenchPage = router.pathname === '/foreign-publications/french';
+    const isGermanyPage = router.pathname === '/foreign-publications/germany';
 
     return (
         <AppWrapper>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <div className="flex flex-col min-h-screen">
-                    {!isGamePage && !isEnglishPage && !isJanpanesePage && <Navbar />}
+                    {!isGamePage && !isEnglishPage && !isJanpanesePage && !isFrenchPage && !isGermanyPage && <Navbar />}
                     <AnimatePresence mode="wait" initial={false}>
                         <main className="flex-grow" key={router.pathname}>
                             <Component {...pageProps} />

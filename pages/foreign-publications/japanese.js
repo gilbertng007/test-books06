@@ -84,6 +84,28 @@ export default function JapaneseGradientBooksPage() {
   const [cart, setCart] = useState([])
   const [showFavorites, setShowFavorites] = useState(false)
 
+  useEffect(() => {
+    // Load favorites and cart from localStorage when component mounts
+    const storedFavorites = localStorage.getItem('favorites')
+    const storedCart = localStorage.getItem('cart')
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites))
+    }
+    if (storedCart) {
+      setCart(JSON.parse(storedCart))
+    }
+  }, [])
+
+  useEffect(() => {
+    // Save favorites to localStorage whenever it changes
+    localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [favorites])
+
+  useEffect(() => {
+    // Save cart to localStorage whenever it changes
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
   const nextBook = () => {
     setCurrentBook((prev) => (prev + 1) % books.length)
     setQuantity(1)
@@ -116,6 +138,10 @@ export default function JapaneseGradientBooksPage() {
 
   const removeFromCart = (index) => {
     setCart(prev => prev.filter((_, i) => i !== index))
+  }
+
+  const removeFromFavorites = (bookIndex) => {
+    setFavorites(prev => prev.filter(i => i !== bookIndex))
   }
 
   useEffect(() => {
@@ -257,7 +283,7 @@ export default function JapaneseGradientBooksPage() {
                 )}
               </div>
             </div>
-            <div className="mt-6 flex flex-wrap items-center justify-between">
+            <div className="mt-6 flex flex-wrap  items-center justify-between">
               <div className="flex items-center space-x-4 mb-4 sm:mb-0">
                 <span className="text-2xl font-bold text-indigo-800" style={{fontFamily: '"Zen Maru Gothic", sans-serif'}}>
                   ¥{books[currentBook].price.toLocaleString()}
@@ -278,7 +304,7 @@ export default function JapaneseGradientBooksPage() {
                     className="p-2 text-indigo-600 hover:text-indigo-800 transition-colors"
                     aria-label="数量を増やす"
                   >
-                    <Plus size={20}   />
+                    <Plus size={20} />
                   </button>
                 </div>
               </div>
@@ -319,10 +345,17 @@ export default function JapaneseGradientBooksPage() {
             {showFavorites ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {favorites.map((bookIndex) => (
-                  <div key={bookIndex} className="border p-4 rounded-lg">
+                  <div key={bookIndex} className="border p-4 rounded-lg relative">
                     <Image src={books[bookIndex].cover} alt={books[bookIndex].title} width={150} height={200} className="object-cover mb-2 rounded" />
                     <h3 className="font-semibold">{books[bookIndex].title}</h3>
                     <p>{books[bookIndex].author}</p>
+                    <button
+                      onClick={() => removeFromFavorites(bookIndex)}
+                      className="absolute top-2 right-2 text-red-500 hover:text-red-700 transition-colors"
+                      aria-label={`${books[bookIndex].title}をお気に入りから削除`}
+                    >
+                      <X size={20} />
+                    </button>
                   </div>
                 ))}
               </div>

@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 // SVG icons
 const ChevronLeft = (props) => (
@@ -166,6 +166,10 @@ export default function FrenchGradientBooksPage() {
     setCart(prevCart => prevCart.filter((_, i) => i !== index))
   }
 
+  const removeFromFavorites = (index) => {
+    setFavorites(prev => prev.filter(i => i !== index))
+  }
+
   const toggleFavorites = () => {
     setShowFavorites(!showFavorites)
   }
@@ -173,6 +177,9 @@ export default function FrenchGradientBooksPage() {
   const toggleCart = () => {
     setShowCart(!showCart)
   }
+
+  const incrementQuantity = () => setQuantity(prev => prev + 1)
+  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
 
   useEffect(() => {
     if (showToast) {
@@ -182,9 +189,6 @@ export default function FrenchGradientBooksPage() {
       return () => clearTimeout(timer)
     }
   }, [showToast])
-
-  const incrementQuantity = () => setQuantity(prev => prev + 1)
-  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1))
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-100 via-rose-200 to-teal-200 flex items-center justify-center p-4 sm:p-8">
@@ -226,7 +230,8 @@ export default function FrenchGradientBooksPage() {
                   <Heart size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
                 </button>
               </div>
-              <button onClick={nextBook} className="text-amber-600 hover:text-amber-800 transition-colors" aria-label="Livre  suivant">
+              
+              <button onClick={nextBook} className="text-amber-600 hover:text-amber-800 transition-colors" aria-label="Livre suivant">
                 <ChevronRight size={28} />
               </button>
             </div>
@@ -366,9 +371,17 @@ export default function FrenchGradientBooksPage() {
               <h2 className="text-2xl font-bold mb-4">Mes Favoris</h2>
               {favorites.length > 0 ? (
                 favorites.map((index) => (
-                  <div key={index} className="mb-4 p-4 border rounded-lg">
-                    <h3 className="text-xl font-semibold">{books[index].title}</h3>
-                    <p>{books[index].author}</p>
+                  <div key={index} className="mb-4 p-4 border rounded-lg flex justify-between items-center">
+                    <div>
+                      <h3 className="text-xl font-semibold">{books[index].title}</h3>
+                      <p>{books[index].author}</p>
+                    </div>
+                    <button 
+                      onClick={() => removeFromFavorites(index)}
+                      className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded transition-colors"
+                    >
+                      Supprimer
+                    </button>
                   </div>
                 ))
               ) : (
@@ -441,6 +454,15 @@ export default function FrenchGradientBooksPage() {
           </button>
         </div>
       )}
+
+      {/* Home button */}
+      <Link 
+        href="/"
+        className="fixed bottom-4 left-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded-full transition-colors"
+      >
+        Retour à l'accueil
+      </Link>
     </div>
   )
 }
+
