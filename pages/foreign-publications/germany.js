@@ -1,8 +1,8 @@
 
-'use client'
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // SVG icons
 const ChevronLeft = (props) => (
@@ -168,6 +168,10 @@ export default function GermanGradientBooksPage() {
     setCart(prevCart => prevCart.filter((_, i) => i !== index))
   }
 
+  const removeFromFavorites = (index) => {
+    setFavorites(prevFavorites => prevFavorites.filter(i => i !== index))
+  }
+
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0)
   }
@@ -219,8 +223,7 @@ export default function GermanGradientBooksPage() {
                 </div>
                 <button 
                   onClick={toggleFavorite} 
-                  className={`text-emerald-600 hover:text-emerald-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500 hover:text-red-600' : ''}`}
-                  
+                  className={`text-emerald-600 hover:text-emerald-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500  hover:text-red-600' : ''}`}
                   aria-label={favorites.includes(currentBook) ? "Von Favoriten entfernen" : "Zu Favoriten hinzufügen"}
                 >
                   <Heart size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
@@ -340,7 +343,7 @@ export default function GermanGradientBooksPage() {
           </div>
         </div>
         
-        {/* New buttons for My Favorites and Shopping Cart */}
+        {/* Buttons for My Favorites and Shopping Cart */}
         <div className="mt-4 flex justify-end space-x-4 px-8 pb-8">
           <button
             onClick={() => setShowFavorites(true)}
@@ -357,6 +360,13 @@ export default function GermanGradientBooksPage() {
             Warenkorb
           </button>
         </div>
+
+        {/* Link to return to home page */}
+        <div className="mt-4 flex justify-center px-8 pb-8">
+          <Link href="/" className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full inline-flex items-center transition-colors">
+            Zurück zur Startseite
+          </Link>
+        </div>
       </div>
 
       {/* Favorites Modal */}
@@ -367,18 +377,27 @@ export default function GermanGradientBooksPage() {
             {favorites.length > 0 ? (
               <ul>
                 {favorites.map((index) => (
-                  <li key={index} className="mb-2 flex items-center">
-                    <Image 
-                      src={books[index].cover} 
-                      alt={`Cover von ${books[index].title}`} 
-                      width={50} 
-                      height={75} 
-                      className="mr-4"
-                    />
-                    <div>
-                      <h3 className="font-semibold">{books[index].title}</h3>
-                      <p className="text-sm text-gray-600">{books[index].author}</p>
+                  <li key={index} className="mb-2 flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Image 
+                        src={books[index].cover} 
+                        alt={`Cover von ${books[index].title}`} 
+                        width={50} 
+                        height={75} 
+                        className="mr-4"
+                      />
+                      <div>
+                        <h3 className="font-semibold">{books[index].title}</h3>
+                        <p className="text-sm text-gray-600">{books[index].author}</p>
+                      </div>
                     </div>
+                    <button
+                      onClick={() => removeFromFavorites(index)}
+                      className="text-red-500 hover:text-red-700 transition-colors"
+                      aria-label={`${books[index].title} aus Favoriten entfernen`}
+                    >
+                      <X size={20} />
+                    </button>
                   </li>
                 ))}
               </ul>
