@@ -1,9 +1,8 @@
 
-
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronLeft, ChevronRight, Star, Heart, Calendar, Book, Award, Video, Plus, Minus, ShoppingCart, X, Trash2 } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Star, Heart, Calendar, Book, Award, Video, Plus, Minus, ShoppingCart, X, Trash2, Home } from 'lucide-react'
 
 const books = [
   {
@@ -279,13 +278,13 @@ export default function JapaneseGradientBooksPage() {
                     className="p-2 text-indigo-600 hover:text-indigo-800 transition-colors"
                     aria-label="数量を増やす"
                   >
-                    <Plus size={20} />
+                    <Plus size={20}   />
                   </button>
                 </div>
               </div>
               <button 
                 onClick={addToCart}
-                className="flex-grow sm:flex-grow-0 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold  py-3 px-6 rounded-full inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105"
+                className="flex-grow sm:flex-grow-0 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105"
                 style={{fontFamily: '"M PLUS 1p", sans-serif'}}
               >
                 <span>カートに追加</span>
@@ -357,7 +356,19 @@ export default function JapaneseGradientBooksPage() {
             )}
           </div>
         )}
+        
+        {/* Updated Home button */}
+        <div className="p-4 bg-indigo-100 flex justify-center">
+          <Link 
+            href="/"
+            className="bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors flex items-center justify-center"
+          >
+            <Home className="mr-2" size={20} />
+            <span style={{fontFamily: '"Noto Sans JP", sans-serif'}}>ホームに戻る</span>
+          </Link>
+        </div>
       </div>
+      
       {showToast && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
           <span className="mr-2" style={{fontFamily: '"Noto Sans JP", sans-serif'}}>カートに追加しました！</span>
@@ -369,3 +380,4 @@ export default function JapaneseGradientBooksPage() {
     </div>
   )
 }
+
