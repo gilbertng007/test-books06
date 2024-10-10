@@ -1,61 +1,25 @@
-
 import { useState, useEffect } from 'react'
-
-// SVG icons
-const ChevronLeft = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m15 18-6-6 6-6"/></svg>
-)
-
-const ChevronRight = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m9 18 6-6-6-6"/></svg>
-)
-
-const Star = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-)
-
-const Bookmark = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-)
-
-const Calendar = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-)
-
-const Book = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-)
-
-const Award = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-)
-
-const Video = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg>
-)
-
-const Plus = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-)
-
-const Minus = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M5 12h14"/></svg>
-)
-
-const ShoppingCart = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-)
-
-const X = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-)
-
-const Heart = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-)
+import Link from 'next/link'
+import { 
+  ChevronLeft, 
+  ChevronRight, 
+  Star, 
+  Bookmark, 
+  Calendar, 
+  Book, 
+  Award, 
+  Video, 
+  Plus, 
+  Minus, 
+  ShoppingCart, 
+  X, 
+  Heart, 
+  Home 
+} from 'lucide-react'
 
 const books = [
   {
+    id: 1,
     title: "Moby-Dick",
     author: "Herman Melville",
     year: 1851,
@@ -73,6 +37,7 @@ const books = [
     video: "/video/md-01.mp4"
   },
   {
+    id: 2,
     title: "Jane Eyre",
     author: "Charlotte Brontë",
     year: 1847,
@@ -90,6 +55,7 @@ const books = [
     video: "/video/e-b01.mp4"
   },
   {
+    id: 3,
     title: "The Catcher in the Rye",
     author: "J.D. Salinger",
     year: 1951,
@@ -107,6 +73,7 @@ const books = [
     video: "/video/e-c01.mp4"
   },
   {
+    id: 4,
     title: "Brave New World",
     author: "Aldous Huxley",
     year: 1932,
@@ -125,6 +92,56 @@ const books = [
   }
 ]
 
+const initDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('BookStore', 1)
+    request.onerror = () => reject('IndexedDB initialization failed')
+    request.onsuccess = () => resolve(request.result)
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result
+      db.createObjectStore('favorites', { keyPath: 'id' })
+      db.createObjectStore('cart', { keyPath: 'id' })
+    }
+  })
+}
+
+const getFromDB = (storeName) => {
+  return new Promise((resolve, reject) => {
+    initDB().then((db) => {
+      const transaction = db.transaction(storeName, 'readonly')
+      const store = transaction.objectStore(storeName)
+      const request = store.getAll()
+      request.onerror = () => reject('Error fetching data')
+      request.onsuccess = () => resolve(request.result)
+    }).catch(() => {
+      // Fallback to localStorage if IndexedDB fails
+      const data = localStorage.getItem(storeName)
+      resolve(data ? JSON.parse(data) : [])
+    })
+  })
+}
+
+const saveToDB = (storeName, data) => {
+  return new Promise((resolve, reject) => {
+    initDB().then((db) => {
+      const transaction = db.transaction(storeName, 'readwrite')
+      const store = transaction.objectStore(storeName)
+      store.clear()
+      data.forEach((item) => store.add(item))
+      transaction.oncomplete = () => {
+        // Also save to localStorage as a backup
+        localStorage.setItem(storeName, JSON.stringify(data))
+        resolve()
+      }
+      transaction.onerror = () => reject('Error saving data')
+    }).catch(() => {
+      // Fallback to localStorage if IndexedDB fails
+      localStorage.setItem(storeName, JSON.stringify(data))
+      resolve()
+    })
+  })
+}
+
 export default function EnhancedBlueGradientEnglishBooksPage() {
   const [currentBook, setCurrentBook] = useState(0)
   const [favorites, setFavorites] = useState([])
@@ -134,6 +151,28 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
   const [cart, setCart] = useState([])
   const [showCart, setShowCart] = useState(false)
   const [showFavorites, setShowFavorites] = useState(false)
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const favoritesData = await getFromDB('favorites')
+        setFavorites(favoritesData)
+        const cartData = await getFromDB('cart')
+        setCart(cartData)
+      } catch (error) {
+        console.error('Error loading data:', error)
+      }
+    }
+    loadData()
+  }, [])
+
+  useEffect(() => {
+    saveToDB('favorites', favorites).catch(console.error)
+  }, [favorites])
+
+  useEffect(() => {
+    saveToDB('cart', cart).catch(console.error)
+  }, [cart])
 
   const nextBook = () => {
     setCurrentBook((prev) => (prev + 1) % books.length)
@@ -148,15 +187,19 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
   }
 
   const toggleFavorite = () => {
-    setFavorites(prev => 
-      prev.includes(currentBook) 
-        ? prev.filter(i => i !== currentBook)
-        : [...prev, currentBook]
-    )
+    setFavorites(prev => {
+      const currentBookId = books[currentBook].id
+      if (prev.some(fav => fav.id === currentBookId)) {
+        return prev.filter(fav => fav.id !== currentBookId)
+      } else {
+        return [...prev, { id: currentBookId, bookIndex: currentBook }]
+      }
+    })
   }
 
   const addToCart = () => {
     const newItem = {
+      id: Date.now(),
       ...books[currentBook],
       quantity: quantity,
       total: books[currentBook].price * quantity
@@ -166,8 +209,8 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
     setQuantity(1)
   }
 
-  const removeFromCart = (index) => {
-    setCart(prevCart => prevCart.filter((_, i) => i !== index))
+  const removeFromCart = (id) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== id))
   }
 
   const getTotalPrice = () => {
@@ -220,16 +263,16 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
               <div className="flex items-center space-x-4">
                 <div className="flex items-center">
                   <Star className="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" />
-                  <span  className="text-blue-800 font-semibold" style={{fontFamily: 'Poppins, sans-serif'}}>
+                  <span className="text-blue-800 font-semibold" style={{fontFamily: 'Poppins, sans-serif'}}>
                     {books[currentBook].rating.toFixed(1)}
                   </span>
                 </div>
                 <button 
                   onClick={toggleFavorite} 
-                  className={`text-blue-600 hover:text-blue-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500 hover:text-red-600' : ''}`}
-                  aria-label={favorites.includes(currentBook) ? "Remove from favorites" : "Add to favorites"}
+                  className={`text-blue-600 hover:text-blue-800 transition-colors ${favorites.some(fav => fav.id === books[currentBook].id) ? 'text-red-500 hover:text-red-600' : ''}`}
+                  aria-label={favorites.some(fav => fav.id === books[currentBook].id) ? "Remove from favorites" : "Add to favorites"}
                 >
-                  <Bookmark size={24} fill={favorites.includes(currentBook) ? "currentColor" : "none"} />
+                  <Bookmark size={24} fill={favorites.some(fav => fav.id === books[currentBook].id) ? "currentColor" : "none"} />
                 </button>
               </div>
               <button onClick={nextBook} className="text-blue-600 hover:text-blue-800 transition-colors" aria-label="Next book">
@@ -279,6 +322,7 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
                   Gallery
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
+                  
                   {books[currentBook].images.map((image, index) => (
                     <div key={index} className="relative aspect-w-3 aspect-h-2 rounded-lg overflow-hidden shadow-md">
                       <img src={image} alt={`Image ${index + 1} related to ${books[currentBook].title}`} className="object-cover" />
@@ -344,7 +388,6 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
           </div>
         </div>
         
-        {/* Add a cart icon to open the cart modal */}
         <button 
           onClick={() => setShowCart(true)}
           className="fixed top-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg"
@@ -357,7 +400,6 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
           )}
         </button>
 
-        {/* Add a favorites icon to open the favorites modal */}
         <button 
           onClick={() => setShowFavorites(true)}
           className="fixed top-16 right-4 bg-red-500 text-white p-2 rounded-full shadow-lg"
@@ -370,7 +412,6 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
           )}
         </button>
 
-        {/* Cart Modal */}
         {showCart && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
@@ -379,14 +420,14 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
                 <p>Your cart is empty.</p>
               ) : (
                 <>
-                  {cart.map((item, index) => (
-                    <div key={index} className="flex items-center justify-between mb-4 border-b pb-2">
+                  {cart.map((item) => (
+                    <div key={item.id} className="flex items-center justify-between mb-4 border-b pb-2">
                       <div>
                         <h3 className="font-semibold">{item.title}</h3>
                         <p>Quantity: {item.quantity}</p>
                         <p>Price: ${item.total.toFixed(2)}</p>
                       </div>
-                      <button onClick={() => removeFromCart(index)} className="text-red-500">
+                      <button onClick={() => removeFromCart(item.id)} className="text-red-500">
                         <X size={20} />
                       </button>
                     </div>
@@ -412,7 +453,6 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
           </div>
         )}
 
-        {/* Favorites Modal */}
         {showFavorites && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
             <div className="bg-white rounded-lg p-6 max-w-lg w-full max-h-[80vh] overflow-y-auto">
@@ -421,19 +461,22 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
                 <p>You haven't added any favorites yet.</p>
               ) : (
                 <div className="grid gap-4">
-                  {favorites.map((bookIndex) => (
-                    <div key={bookIndex} className="flex items-center space-x-4 border-b pb-4">
-                      <img 
-                        src={books[bookIndex].cover} 
-                        alt={`Cover of ${books[bookIndex].title}`}
-                        className="w-16 h-24 object-cover rounded"
-                      />
-                      <div>
-                        <h3 className="font-semibold">{books[bookIndex].title}</h3>
-                        <p className="text-sm text-gray-600">{books[bookIndex].author}</p>
+                  {favorites.map((fav) => {
+                    const book = books.find(b => b.id === fav.id)
+                    return (
+                      <div key={fav.id} className="flex items-center space-x-4 border-b pb-4">
+                        <img 
+                          src={book.cover} 
+                          alt={`Cover of ${book.title}`}
+                          className="w-16 h-24 object-cover rounded"
+                        />
+                        <div>
+                          <h3 className="font-semibold">{book.title}</h3>
+                          <p className="text-sm text-gray-600">{book.author}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               )}
               <button 
@@ -454,7 +497,17 @@ export default function EnhancedBlueGradientEnglishBooksPage() {
             </button>
           </div>
         )}
+
+        <div className="mt-8 pb-8 px-8 flex justify-center">
+          <Link href="/" passHref>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Home className="mr-2" size={20} />
+              <span style={{fontFamily: 'Ubuntu, sans-serif'}}>Return to Home</span>
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   )
 }
+
