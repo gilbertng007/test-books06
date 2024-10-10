@@ -20,7 +20,7 @@ const WavingFlagButton = ({ onClick, isVisible }) => {
     <motion.button
       onClick={onClick}
       initial={{ scale: 1 }}
-      animate={{ 
+      animate={{
         scale: [1, 1.1, 1],
       }}
       exit={{ opacity: 0, scale: 0 }}
@@ -60,10 +60,10 @@ const WavingFlagButton = ({ onClick, isVisible }) => {
           }}
         />
       </svg>
-      <motion.span 
+      <motion.span
         className="relative z-10 font-bold text-lg"
         style={{ color: 'white', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)' }}
-        animate={{ 
+        animate={{
           textShadow: ['1px 1px 2px rgba(0, 0, 0, 0.5)', '2px 2px 4px rgba(0, 0, 0, 0.5)', '1px 1px 2px rgba(0, 0, 0, 0.5)']
         }}
         transition={{
@@ -171,33 +171,33 @@ export default function Navbar() {
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
-      const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-      setFavoritesCount(favorites.length);
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    setFavoritesCount(favorites.length);
   }, []);
 
-  const handleLinkClick = () => {
+  const handleHomeClick = () => {
+    router.push('/');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('newBooksButtonClicked');
+    }
+  };
+
+  const handleEasterEggClick = () => {
     if (!soundRef.current) {
       soundRef.current = new Howl({
         src: ['/bejin.mp3'],
         loop: true,
       });
     }
-    soundRef.current.play();
-    setPlayMusic(true);
-    setIsPlaying(true);
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('newBooksButtonClicked');
-    }
-  };
 
-  const handlePlayPause = () => {
-    if (soundRef.current) {
-      if (isPlaying) {
-        soundRef.current.pause();
-      } else {
-        soundRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (isPlaying) {
+      soundRef.current.pause();
+      setIsPlaying(false);
+      setPlayMusic(false);
+    } else {
+      soundRef.current.play();
+      setIsPlaying(true);
+      setPlayMusic(true);
     }
   };
 
@@ -219,104 +219,104 @@ export default function Navbar() {
 
   return (
     <div className="relative">
-        <AppBar position="static" className="bg-blue-600">
-            <Toolbar className="justify-between px-4">
-                <Typography variant="h6" component="div" className="flex items-center">
-                    <Link
-                        href="/"
-                        className="text-white no-underline flex items-center hover:bg-gradient-to-r hover:bg-red-500 hover:text-white hover:rounded hover:px-4 hover:py-2"
-                        onClick={handleLinkClick}
-                    >
-                        <BookIcon className="text-5xl text-yellow-300 mr-2" />
-                        <span className="text-2xl font-bold">當當首頁 - 彩蛋歌曲</span>
-                    </Link>
-                    <IconButton
-                        color="inherit"
-                        onClick={handlePlayPause}
-                        className="ml-2"
-                        aria-label={isPlaying ? "暫停音樂" : "播放音樂"}
-                    >
-                        {isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-                    </IconButton>
-                </Typography>
-                <div className="flex items-center space-x-2 ml-auto">
-                    <Button
-                        color="inherit"
-                        onClick={() => router.push('/orders')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                    >
-                        我的訂單
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={() => router.push('/favorites')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                        startIcon={<FavoriteIcon />}
-                    >
-                        我的收藏 ({favoritesCount})
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={handleForeignPublicationsClick}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                        endIcon={<ArrowDropDownIcon />}
-                    >
-                        海外分站書店
-                    </Button>
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={() => { router.push('/foreign-publications/english'); handleClose(); }}>北美書店</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/japanese'); handleClose(); }}>日本書店</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/french'); handleClose(); }}>法國書店</MenuItem>
-                        <MenuItem onClick={() => { router.push('/foreign-publications/germany'); handleClose(); }}>德國書店</MenuItem>
-                    </Menu>
-                    <IconButton
-                        color="inherit"
-                        onClick={() => router.push('/cart')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                    >
-                        <Badge badgeContent={cartItemsCount} color="error">
-                            <ShoppingCartIcon />
-                        </Badge>
-                    </IconButton>
-                    <Button
-                        color="inherit"
-                        onClick={() => router.push('/login')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                    >
-                        登錄
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={() => router.push('/register')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                    >
-                        註冊
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={() => router.push('/game')}
-                        className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
-                        startIcon={<SportsEsportsIcon />}
-                    >
-                        遊戲
-                    </Button>
-                </div>
-            </Toolbar>
-        </AppBar>
-        {playMusic && (
-            <Confetti
-                count={100}
-                size={20}
-                gravity={0.1}
-                style={{ width: '100%', height: '100vh' }}
-            />
-        )}
-        <Banana />
+      <AppBar position="static" className="bg-blue-600">
+        <Toolbar className="justify-between px-4">
+          <Typography variant="h6" component="div" className="flex items-center">
+            <Button
+              color="inherit"
+              onClick={handleHomeClick}
+              className="text-white no-underline flex items-center hover:bg-gradient-to-r hover:bg-red-500 hover:text-white hover:rounded hover:px-4 hover:py-2"
+            >
+              <BookIcon className="text-5xl text-yellow-300 mr-2" />
+              <span className="text-2xl font-bold">當當首頁</span>
+            </Button>
+            <Button
+              color="inherit"
+              onClick={handleEasterEggClick}
+              className="ml-2 bg-blue-700 hover:bg-blue-800 transition-colors duration-300 flex items-center"
+              startIcon={isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+            >
+              彩蛋歌曲
+            </Button>
+          </Typography>
+          <div className="flex items-center space-x-2 ml-auto">
+            <Button
+              color="inherit"
+              onClick={() => router.push('/orders')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              我的訂單
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/favorites')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+              startIcon={<FavoriteIcon />}
+            >
+              我的收藏 ({favoritesCount})
+            </Button>
+            <Button
+              color="inherit"
+              onClick={handleForeignPublicationsClick}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+              endIcon={<ArrowDropDownIcon />}
+            >
+              海外分站書店
+            </Button>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem onClick={() => { router.push('/foreign-publications/english'); handleClose(); }}>北美書店</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/japanese'); handleClose(); }}>日本書店</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/french'); handleClose(); }}>法國書店</MenuItem>
+              <MenuItem onClick={() => { router.push('/foreign-publications/germany'); handleClose(); }}>德國書店</MenuItem>
+            </Menu>
+            <IconButton
+              color="inherit"
+              onClick={() => router.push('/cart')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              <Badge badgeContent={cartItemsCount} color="error">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/login')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              登錄
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/register')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+            >
+              註冊
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => router.push('/game')}
+              className="bg-blue-700 hover:bg-blue-800 transition-colors duration-300"
+              startIcon={<SportsEsportsIcon />}
+            >
+              遊戲
+            </Button>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {playMusic && (
+        <Confetti
+          count={100}
+          size={20}
+          gravity={0.1}
+          style={{ width: '100%', height: '100vh' }}
+        />
+      )}
+      <Banana />
     </div>
-);
+  );
 }
 
