@@ -17,13 +17,14 @@ function MyApp({ Component, pageProps, router }) {
     const isJanpanesePage = router.pathname === '/foreign-publications/japanese';
     const isFrenchPage = router.pathname === '/foreign-publications/french';
     const isGermanyPage = router.pathname === '/foreign-publications/germany';
+    const isNewbooksPage = router.pathname === '/new-books-2024';
 
     return (
         <AppWrapper>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
                 <div className="flex flex-col min-h-screen">
-                    {!isGamePage && !isEnglishPage && !isJanpanesePage && !isFrenchPage && !isGermanyPage && <Navbar />}
+                    {!isGamePage && !isEnglishPage && !isJanpanesePage && !isFrenchPage && !isGermanyPage && !isNewbooksPage && <Navbar />}
                     <AnimatePresence mode="wait" initial={false}>
                         <main className="flex-grow" key={router.pathname}>
                             <Component {...pageProps} />
