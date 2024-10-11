@@ -17,8 +17,7 @@ const books = [
     pages: 175,
     price: 1200,
     images: [
-      "/images/sg-01.png?height=200&width=300&text=雪景色",
-      "/images/sg-02.png?height=200&width=300&text=温泉旅館",
+
     ],
     video: "/video/sg-04.mp4"
   },
@@ -34,8 +33,7 @@ const books = [
     pages: 248,
     price: 880,
     images: [
-      "/images/j-02.png?height=200&width=300&text=東京の街並み",
-      "/images/j-03.png?height=200&width=300&text=書斎",
+
     ],
     video: "/video/j-01.mp4"
   },
@@ -46,15 +44,14 @@ const books = [
     genre: "自伝的小説",
     awards: ["芥川賞"],
     synopsis: "「人間失格」を自称する主人公の、幼年期から青年期にかけての苦悩と破滅の過程を描いた作品。",
-    cover: "/placeholder.svg?height=400&width=300&text=人間失格",
+    cover: "/images/jp-03.png?height=400&width=300&text=人間失格",
     rating: 4.6,
     pages: 212,
     price: 760,
     images: [
-      "/placeholder.svg?height=200&width=300&text=青森の風景",
-      "/placeholder.svg?height=200&width=300&text=昭和初期の東京",
+
     ],
-    video: "/placeholder.mp4"
+    video: "/video/jp-03.mp4"
   },
   {
     title: "風の歌を聴け",
@@ -63,15 +60,14 @@ const books = [
     genre: "現代小説",
     awards: ["群像新人文学賞"],
     synopsis: "1970年代の日本を舞台に、大学生の「僕」の夏休みの出来事を通して、喪失感や孤独を描いた村上春樹のデビュー作。",
-    cover: "/placeholder.svg?height=400&width=300&text=風の歌を聴け",
+    cover: "/images/jp-04.jpg?height=400&width=300&text=風の歌を聴け",
     rating: 4.3,
     pages: 168,
     price: 649,
     images: [
-      "/placeholder.svg?height=200&width=300&text=1970年代の日本",
-      "/placeholder.svg?height=200&width=300&text=レコード店",
+
     ],
-    video: "/placeholder.mp4"
+    video: "/video/jp-04.mp4"
   }
 ]
 
@@ -119,8 +115,8 @@ export default function JapaneseGradientBooksPage() {
   }
 
   const toggleFavorite = () => {
-    setFavorites(prev => 
-      prev.includes(currentBook) 
+    setFavorites(prev =>
+      prev.includes(currentBook)
         ? prev.filter(i => i !== currentBook)
         : [...prev, currentBook]
     )
@@ -171,18 +167,18 @@ export default function JapaneseGradientBooksPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8">
           <div className="lg:col-span-1">
             <div className="relative aspect-[3/4] rounded-lg overflow-hidden shadow-lg">
-              <Image 
-                src={books[currentBook].cover} 
-                alt={`Cover of ${books[currentBook].title}`} 
+              <Image
+                src={books[currentBook].cover}
+                alt={`Cover of ${books[currentBook].title}`}
                 layout="fill"
                 objectFit="cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h2 className="text-3xl font-bold mb-1 text-white" style={{fontFamily: '"Noto Serif JP", serif'}}>
+                <h2 className="text-3xl font-bold mb-1 text-white" style={{ fontFamily: '"Noto Serif JP", serif' }}>
                   {books[currentBook].title}
                 </h2>
-                <p className="text-xl text-pink-200" style={{fontFamily: '"M PLUS Rounded 1c", sans-serif'}}>
+                <p className="text-xl text-pink-200" style={{ fontFamily: '"M PLUS Rounded 1c", sans-serif' }}>
                   {books[currentBook].author}
                 </p>
               </div>
@@ -194,12 +190,12 @@ export default function JapaneseGradientBooksPage() {
               <div className="flex items-center space-x-4">
                 <div className="flex items-center">
                   <Star className="w-5 h-5 text-yellow-400 mr-1" fill="currentColor" />
-                  <span className="text-indigo-800 font-semibold" style={{fontFamily: '"Kosugi Maru", sans-serif'}}>
+                  <span className="text-indigo-800 font-semibold" style={{ fontFamily: '"Kosugi Maru", sans-serif' }}>
                     {books[currentBook].rating.toFixed(1)}
                   </span>
                 </div>
-                <button 
-                  onClick={toggleFavorite} 
+                <button
+                  onClick={toggleFavorite}
                   className={`text-indigo-600 hover:text-indigo-800 transition-colors ${favorites.includes(currentBook) ? 'text-red-500 hover:text-red-600' : ''}`}
                   aria-label={favorites.includes(currentBook) ? "お気に入りから削除" : "お気に入りに追加"}
                 >
@@ -216,30 +212,30 @@ export default function JapaneseGradientBooksPage() {
               <div className="flex flex-wrap justify-between items-center mb-6">
                 <div className="flex items-center mb-2 sm:mb-0">
                   <Calendar className="w-5 h-5 text-indigo-500 mr-2" />
-                  <span className="text-indigo-700" style={{fontFamily: '"Sawarabi Mincho", serif'}}>{books[currentBook].year}年</span>
+                  <span className="text-indigo-700" style={{ fontFamily: '"Sawarabi Mincho", serif' }}>{books[currentBook].year}年</span>
                 </div>
                 <div className="flex items-center mb-2 sm:mb-0">
                   <Book className="w-5 h-5 text-indigo-500 mr-2" />
-                  <span className="text-indigo-700" style={{fontFamily: '"Sawarabi Gothic", sans-serif'}}>{books[currentBook].genre}</span>
+                  <span className="text-indigo-700" style={{ fontFamily: '"Sawarabi Gothic", sans-serif' }}>{books[currentBook].genre}</span>
                 </div>
                 <div className="flex items-center">
                   <Book className="w-5 h-5 text-indigo-500 mr-2" />
-                  <span className="text-indigo-700" style={{fontFamily: '"Kosugi", sans-serif'}}>{books[currentBook].pages}ページ</span>
+                  <span className="text-indigo-700" style={{ fontFamily: '"Kosugi", sans-serif' }}>{books[currentBook].pages}ページ</span>
                 </div>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{fontFamily: '"Shippori Mincho", serif'}}>
+                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{ fontFamily: '"Shippori Mincho", serif' }}>
                   あらすじ
                 </h3>
-                <p className="text-indigo-700 leading-relaxed" style={{fontFamily: '"Noto Sans JP", sans-serif'}}>
+                <p className="text-indigo-700 leading-relaxed" style={{ fontFamily: '"Noto Sans JP", sans-serif' }}>
                   {books[currentBook].synopsis}
                 </p>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{fontFamily: '"Shippori Mincho", serif'}}>
+                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{ fontFamily: '"Shippori Mincho", serif' }}>
                   受賞歴
                 </h3>
-                <ul className="list-disc list-inside text-indigo-700" style={{fontFamily: '"Zen Kaku Gothic New", sans-serif'}}>
+                <ul className="list-disc list-inside text-indigo-700" style={{ fontFamily: '"Zen Kaku Gothic New", sans-serif' }}>
                   {books[currentBook].awards.map((award, index) => (
                     <li key={index} className="flex items-start mb-2">
                       <Award className="w-5 h-5 text-yellow-500 mr-2 flex-shrink-0 mt-1" />
@@ -249,7 +245,7 @@ export default function JapaneseGradientBooksPage() {
                 </ul>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{fontFamily: '"Shippori Mincho", serif'}}>
+                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{ fontFamily: '"Shippori Mincho", serif' }}>
                   ギャラリー
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
@@ -261,7 +257,7 @@ export default function JapaneseGradientBooksPage() {
                 </div>
               </div>
               <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{fontFamily: '"Shippori Mincho", serif'}}>
+                <h3 className="text-xl font-semibold mb-2 text-indigo-800" style={{ fontFamily: '"Shippori Mincho", serif' }}>
                   ブック・プレビュー
                 </h3>
                 {showVideo ? (
@@ -272,10 +268,10 @@ export default function JapaneseGradientBooksPage() {
                     </video>
                   </div>
                 ) : (
-                  <button 
-                    onClick={() => setShowVideo(true)} 
+                  <button
+                    onClick={() => setShowVideo(true)}
                     className="w-full bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-semibold py-3 px-4 rounded-lg flex items-center justify-center transition-colors"
-                    style={{fontFamily: '"M PLUS 1p", sans-serif'}}
+                    style={{ fontFamily: '"M PLUS 1p", sans-serif' }}
                   >
                     <Video className="mr-2" size={24} />
                     プレビューを見る
@@ -285,21 +281,21 @@ export default function JapaneseGradientBooksPage() {
             </div>
             <div className="mt-6 flex flex-wrap  items-center justify-between">
               <div className="flex items-center space-x-4 mb-4 sm:mb-0">
-                <span className="text-2xl font-bold text-indigo-800" style={{fontFamily: '"Zen Maru Gothic", sans-serif'}}>
+                <span className="text-2xl font-bold text-indigo-800" style={{ fontFamily: '"Zen Maru Gothic", sans-serif' }}>
                   ¥{books[currentBook].price.toLocaleString()}
                 </span>
                 <div className="flex items-center border border-indigo-300 rounded-full">
-                  <button 
+                  <button
                     onClick={decrementQuantity}
                     className="p-2 text-indigo-600 hover:text-indigo-800 transition-colors"
                     aria-label="数量を減らす"
                   >
                     <Minus size={20} />
                   </button>
-                  <span className="px-4 py-2 text-indigo-800 font-semibold" style={{fontFamily: '"Zen Kaku Gothic New", sans-serif'}}>
+                  <span className="px-4 py-2 text-indigo-800 font-semibold" style={{ fontFamily: '"Zen Kaku Gothic New", sans-serif' }}>
                     {quantity}
                   </span>
-                  <button 
+                  <button
                     onClick={incrementQuantity}
                     className="p-2 text-indigo-600 hover:text-indigo-800 transition-colors"
                     aria-label="数量を増やす"
@@ -308,10 +304,10 @@ export default function JapaneseGradientBooksPage() {
                   </button>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={addToCart}
                 className="flex-grow sm:flex-grow-0 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full inline-flex items-center justify-center transition-all duration-300 transform hover:scale-105"
-                style={{fontFamily: '"M PLUS 1p", sans-serif'}}
+                style={{ fontFamily: '"M PLUS 1p", sans-serif' }}
               >
                 <span>カートに追加</span>
                 <ShoppingCart className="ml-2" size={20} />
@@ -319,27 +315,27 @@ export default function JapaneseGradientBooksPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Cart and Favorites buttons */}
         <div className="flex justify-between p-4 bg-indigo-100">
-          <button 
+          <button
             onClick={() => setShowFavorites(false)}
             className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors"
           >
             カートを表示 ({cart.length})
           </button>
-          <button 
+          <button
             onClick={toggleFavorites}
             className="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-colors"
           >
             {showFavorites ? 'お気に入りを隠す' : 'お気に入りを表示'} ({favorites.length})
           </button>
         </div>
-        
+
         {/* Cart or Favorites display */}
         {(cart.length > 0 || favorites.length > 0) && (
           <div className="p-4 bg-white">
-            <h2 className="text-2xl font-bold mb-4" style={{fontFamily: '"Noto Serif JP", serif'}}>
+            <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Noto Serif JP", serif' }}>
               {showFavorites ? 'お気に入り' : 'カート'}
             </h2>
             {showFavorites ? (
@@ -389,22 +385,22 @@ export default function JapaneseGradientBooksPage() {
             )}
           </div>
         )}
-        
+
         {/* Updated Home button */}
         <div className="p-4 bg-indigo-100 flex justify-center">
-          <Link 
+          <Link
             href="/"
             className="bg-indigo-500 text-white px-6 py-3 rounded-full hover:bg-indigo-600 transition-colors flex items-center justify-center"
           >
             <Home className="mr-2" size={20} />
-            <span style={{fontFamily: '"Noto Sans JP", sans-serif'}}>ホームに戻る</span>
+            <span style={{ fontFamily: '"Noto Sans JP", sans-serif' }}>ホームに戻る</span>
           </Link>
         </div>
       </div>
-      
+
       {showToast && (
         <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
-          <span className="mr-2" style={{fontFamily: '"Noto Sans JP", sans-serif'}}>カートに追加しました！</span>
+          <span className="mr-2" style={{ fontFamily: '"Noto Sans JP", sans-serif' }}>カートに追加しました！</span>
           <button onClick={() => setShowToast(false)} className="text-white" aria-label="通知を閉じる">
             <X size={20} />
           </button>
