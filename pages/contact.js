@@ -27,16 +27,14 @@ export default function Contact() {
             <ul>
               <li>2.  DreamBooks Co. Ltd.</li>
               <li>Address: 123 Innovation Drive, Suite 456, Silicon Valley, CA 94089, USA </li>
-              <li>Phone: +1 (123) 456-7890</li>li
+              <li>Phone: +1 (123) 456-7890</li>
               <li>Email: info@dreamtechsolutions.com</li>
             </ul>
-            <br />
-            <ul></ul>
             <br />
             <ul>
               <li>3.  東京株式会社</li>
               <li>住所: 東京都港区六本木1-1-1 </li>
-              <li>電話番号: +81-3-1234-5678</li>li
+              <li>電話番号: +81-3-1234-5678</li>
               <li>メールアドレス: info@tokyo-co.jp</li>
             </ul>
             <br />
