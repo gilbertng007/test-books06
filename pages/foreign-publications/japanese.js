@@ -16,9 +16,7 @@ const books = [
     rating: 4.5,
     pages: 175,
     price: 1200,
-    images: [
-
-    ],
+    images: [],
     video: "/video/sg-04.mp4"
   },
   {
@@ -32,9 +30,7 @@ const books = [
     rating: 4.7,
     pages: 248,
     price: 880,
-    images: [
-
-    ],
+    images: [],
     video: "/video/j-01.mp4"
   },
   {
@@ -48,9 +44,7 @@ const books = [
     rating: 4.6,
     pages: 212,
     price: 760,
-    images: [
-
-    ],
+    images: [],
     video: "/video/jp-03.mp4"
   },
   {
@@ -64,9 +58,7 @@ const books = [
     rating: 4.3,
     pages: 168,
     price: 649,
-    images: [
-
-    ],
+    images: [],
     video: "/video/jp-04.mp4"
   }
 ]
@@ -79,9 +71,9 @@ export default function JapaneseGradientBooksPage() {
   const [showToast, setShowToast] = useState(false)
   const [cart, setCart] = useState([])
   const [showFavorites, setShowFavorites] = useState(false)
+  const [showCart, setShowCart] = useState(false)
 
   useEffect(() => {
-    // Load favorites and cart from localStorage when component mounts
     const storedFavorites = localStorage.getItem('favorites')
     const storedCart = localStorage.getItem('cart')
     if (storedFavorites) {
@@ -93,12 +85,10 @@ export default function JapaneseGradientBooksPage() {
   }, [])
 
   useEffect(() => {
-    // Save favorites to localStorage whenever it changes
     localStorage.setItem('favorites', JSON.stringify(favorites))
   }, [favorites])
 
   useEffect(() => {
-    // Save cart to localStorage whenever it changes
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
 
@@ -159,6 +149,12 @@ export default function JapaneseGradientBooksPage() {
       const itemPrice = item.price || 0
       return total + itemPrice * item.quantity
     }, 0)
+  }
+
+  const confirmOrder = () => {
+    alert('注文が確認されました！')
+    setCart([])
+    setShowCart(false)
   }
 
   return (
@@ -296,6 +292,7 @@ export default function JapaneseGradientBooksPage() {
                     {quantity}
                   </span>
                   <button
+
                     onClick={incrementQuantity}
                     className="p-2 text-indigo-600 hover:text-indigo-800 transition-colors"
                     aria-label="数量を増やす"
@@ -319,10 +316,13 @@ export default function JapaneseGradientBooksPage() {
         {/* Cart and Favorites buttons */}
         <div className="flex justify-between p-4 bg-indigo-100">
           <button
-            onClick={() => setShowFavorites(false)}
+            onClick={() => {
+              setShowFavorites(false)
+              setShowCart(!showCart)
+            }}
             className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors"
           >
-            カートを表示 ({cart.length})
+            {showCart ? 'カートを隠す' : 'カートを表示'} ({cart.length})
           </button>
           <button
             onClick={toggleFavorites}
@@ -333,7 +333,7 @@ export default function JapaneseGradientBooksPage() {
         </div>
 
         {/* Cart or Favorites display */}
-        {(cart.length > 0 || favorites.length > 0) && (
+        {((showCart && cart.length > 0) || (showFavorites && favorites.length > 0)) && (
           <div className="p-4 bg-white">
             <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: '"Noto Serif JP", serif' }}>
               {showFavorites ? 'お気に入り' : 'カート'}
@@ -377,8 +377,17 @@ export default function JapaneseGradientBooksPage() {
                 ))}
                 <div className="mt-4 text-right">
                   <p className="text-xl font-bold">合計: ¥{getTotalPrice().toLocaleString()}</p>
-                  <button className="mt-2 bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors">
-                    注文する
+                  <button
+                    onClick={confirmOrder}
+                    className="mt-2 bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition-colors mr-2"
+                  >
+                    注文を確認
+                  </button>
+                  <button
+                    onClick={() => setShowCart(false)}
+                    className="mt-2 bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors"
+                  >
+                    閉じる
                   </button>
                 </div>
               </div>
